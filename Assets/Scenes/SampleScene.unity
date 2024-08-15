@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 232794357}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27077627, y: 0.035257716, z: -0.0075115873}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -162,6 +162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d118fbf0002de5b459c4809419b147a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardSizeX: 8
+  boardSizeY: 8
+  slotPrefab: {fileID: 452358362961785030, guid: b596c6a276361404494a83a766cd2896, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
