@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class GameBoard : MonoBehaviour
@@ -24,8 +25,9 @@ public class GameBoard : MonoBehaviour
 
 	private void SetOffset()
 	{
-		transform.position -= transform.right * (boardSizeX / 2.0f);
-		transform.position -= transform.up * (boardSizeY / 2.0f);
+		float slotWidth = 0.5f;
+		transform.position -= transform.right * ((boardSizeX / 2.0f) - slotWidth);
+		transform.position -= transform.up * ((boardSizeY / 2.0f) - slotWidth);
 	}
 
 	private void Start()
