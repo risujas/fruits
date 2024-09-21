@@ -10,10 +10,16 @@ public class GameBoardEditor : Editor
 		DrawDefaultInspector();
 
 		GameBoardCreation gameBoardCreation = (GameBoardCreation)target;
+
 		if (GUILayout.Button("Create Slots"))
 		{
 			gameBoardCreation.CreateSlots();
 			gameBoardCreation.SetOffset();
+		}
+
+		if (GUILayout.Button("Set Camera Size"))
+		{
+			gameBoardCreation.SetCameraSize();
 		}
 	}
 }
