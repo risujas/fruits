@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 using UnityEngine;
 
 public class GameBoard : MonoBehaviour
@@ -8,38 +6,27 @@ public class GameBoard : MonoBehaviour
 	[SerializeField] private uint boardSizeY = 8;
 	[SerializeField] private GameObject slotPrefab;
 
-	private List<GameObject> slots;
-
 	public void CreateSlots()
 	{
 		DestroySlots();
 		transform.position = Vector3.zero;
 
-		slots = new List<GameObject>();
 		for (int x = 0; x < boardSizeX; x++)
 		{
 			for (int y = 0; y < boardSizeY; y++)
 			{
 				var newSlot = Instantiate(slotPrefab, new Vector3(x, y), Quaternion.identity, transform);
 				newSlot.name = "Slot_X" + x + "_Y" + y;
-				slots.Add(newSlot);
 			}
 		}
 	}
 
 	public void DestroySlots()
 	{
-		if (slots != null)
+		var slots = GetComponentsInChildren<Slot>();
+		foreach (var s in slots)
 		{
-			foreach (var s in slots)
-			{
-				DestroyImmediate(s.gameObject);
-			}
-		}
-
-		foreach (Transform t in transform)
-		{
-			DestroyImmediate(t.gameObject);
+			DestroyImmediate(s.gameObject);
 		}
 	}
 
