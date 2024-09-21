@@ -2,18 +2,18 @@ using UnityEditor;
 
 using UnityEngine;
 
-[CustomEditor(typeof(GameBoard))]
+[CustomEditor(typeof(GameBoardCreation))]
 public class GameBoardEditor : Editor
 {
 	public override void OnInspectorGUI()
 	{
 		DrawDefaultInspector();
 
-		GameBoard gameBoard = (GameBoard)target;
+		GameBoardCreation gameBoardCreation = (GameBoardCreation)target;
 		if (GUILayout.Button("Create Slots"))
 		{
-			gameBoard.CreateSlots();
-			gameBoard.SetOffset();
+			gameBoardCreation.CreateSlots();
+			gameBoardCreation.SetOffset();
 		}
 	}
 }
