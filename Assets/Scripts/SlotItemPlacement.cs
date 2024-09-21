@@ -1,3 +1,5 @@
+using UnityEditor.SceneManagement;
+
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -25,7 +27,7 @@ public class SlotItemPlacement : MonoBehaviour
 
 	private void Update()
 	{
-		if (!Application.isPlaying)
+		if (!Application.isPlaying && !PrefabStageUtility.GetCurrentPrefabStage())
 		{
 			Slot nearest = FindNearestSlot();
 			if (nearest)
