@@ -36,6 +36,11 @@ public class GameBoard : MonoBehaviour
 				DestroyImmediate(s.gameObject);
 			}
 		}
+
+		foreach (Transform t in transform)
+		{
+			DestroyImmediate(t.gameObject);
+		}
 	}
 
 	public void SetOffset()
