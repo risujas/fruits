@@ -34,6 +34,7 @@ public class SlotItemPlacement : MonoBehaviour
 			{
 				gameObject.transform.position = nearest.transform.position;
 				gameObject.transform.parent = nearest.transform;
+				nearest.SetBackgroundColor();
 			}
 		}
 	}
