@@ -29,6 +29,7 @@ public class GameBoardCreation : MonoBehaviour
 				var newSlot = PrefabUtility.InstantiatePrefab(slotPrefab, transform) as GameObject;
 				newSlot.transform.position = new Vector3(x, y);
 				newSlot.name = "Slot_X" + x + "_Y" + y;
+				newSlot.GetComponent<Slot>().SetPosition(x, y);
 			}
 		}
 	}

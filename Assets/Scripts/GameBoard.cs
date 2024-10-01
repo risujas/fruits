@@ -5,26 +5,6 @@ public class GameBoard : MonoBehaviour
 	private Slot firstSelectedSlot;
 	private Slot secondSelectedSlot;
 
-	private void SelectFirstSlot()
-	{
-		firstSelectedSlot = SlotItemPlacement.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-	}
-
-	private void SelectSecondSlot()
-	{
-		secondSelectedSlot = SlotItemPlacement.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-	}
-
-	private void ApplyHighlight()
-	{
-		firstSelectedSlot.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-	}
-
-	private void RemoveHighlight()
-	{
-		firstSelectedSlot.GetComponentInChildren<SpriteRenderer>().color = Color.white;
-	}
-
 	private bool IsValidMove()
 	{
 		if (firstSelectedSlot == null || secondSelectedSlot == null)
@@ -39,18 +19,18 @@ public class GameBoard : MonoBehaviour
 
 		GameBoardCreation gameBoardCreation = GetComponent<GameBoardCreation>();
 
-		if ((firstSelectedSlot.x == 0 && secondSelectedSlot.x < 0) || (firstSelectedSlot.x == gameBoardCreation.BoardSize.x - 1 && secondSelectedSlot.x > firstSelectedSlot.x))
+		if ((firstSelectedSlot.GridPosition.x == 0 && secondSelectedSlot.GridPosition.x < 0) || (firstSelectedSlot.GridPosition.x == gameBoardCreation.BoardSize.x - 1 && secondSelectedSlot.GridPosition.x > firstSelectedSlot.GridPosition.x))
 		{
 			return false;
 		}
 
-		if ((firstSelectedSlot.y == 0 && secondSelectedSlot.y < 0) || (firstSelectedSlot.y == gameBoardCreation.BoardSize.y - 1 && secondSelectedSlot.y > firstSelectedSlot.y))
+		if ((firstSelectedSlot.GridPosition.y == 0 && secondSelectedSlot.GridPosition.y < 0) || (firstSelectedSlot.GridPosition.y == gameBoardCreation.BoardSize.y - 1 && secondSelectedSlot.GridPosition.y > firstSelectedSlot.GridPosition.y))
 		{
 			return false;
 		}
 
-		int rowDifference = Mathf.Abs(firstSelectedSlot.x - secondSelectedSlot.x);
-		int columnDifference = Mathf.Abs(firstSelectedSlot.y - secondSelectedSlot.y);
+		int rowDifference = Mathf.Abs(firstSelectedSlot.GridPosition.x - secondSelectedSlot.GridPosition.x);
+		int columnDifference = Mathf.Abs(firstSelectedSlot.GridPosition.y - secondSelectedSlot.GridPosition.y);
 
 		if (!((rowDifference == 1 && columnDifference == 0) || (rowDifference == 0 && columnDifference == 1)))
 		{
@@ -85,13 +65,13 @@ public class GameBoard : MonoBehaviour
 		{
 			if (firstSelectedSlot == null)
 			{
-				SelectFirstSlot();
-				ApplyHighlight();
+				firstSelectedSlot = SlotItemPlacement.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+				firstSelectedSlot.ApplyBorderHighlight();
 			}
 			else
 			{
-				SelectSecondSlot();
-				RemoveHighlight();
+				secondSelectedSlot = SlotItemPlacement.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+				firstSelectedSlot.RemoveBorderHighlight();
 
 				if (IsValidMove())
 				{

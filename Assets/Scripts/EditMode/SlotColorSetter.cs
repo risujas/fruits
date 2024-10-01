@@ -3,18 +3,19 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class SlotColorSetter : MonoBehaviour
 {
-	[SerializeField] private SpriteRenderer background;
+	[SerializeField] private SpriteRenderer target;
+	[SerializeField] private Color defaultColor;
 
 	public void SetBackgroundColor()
 	{
 		SlotItem item = GetComponentInChildren<SlotItem>();
 		if (item)
 		{
-			background.color = item.ItemColor;
+			target.color = item.ItemColor;
 		}
 		else
 		{
-			background.color = Color.white;
+			target.color = defaultColor;
 		}
 	}
 
