@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class SlotItemPlacement : MonoBehaviour
 {
-	private Slot FindNearestSlot()
+	public static Slot FindNearestSlot(Vector3 point)
 	{
 		Slot nearest = null;
 
@@ -14,7 +14,7 @@ public class SlotItemPlacement : MonoBehaviour
 		var allSlots = FindObjectsByType<Slot>(FindObjectsSortMode.None);
 		foreach (var s in allSlots)
 		{
-			float distance = Vector3.Distance(transform.position, s.transform.position);
+			float distance = Vector3.Distance(point, s.transform.position);
 			if (distance < nearestDistance)
 			{
 				nearestDistance = distance;
@@ -29,7 +29,7 @@ public class SlotItemPlacement : MonoBehaviour
 	{
 		if (!Application.isPlaying && !PrefabStageUtility.GetCurrentPrefabStage())
 		{
-			Slot nearest = FindNearestSlot();
+			Slot nearest = FindNearestSlot(transform.position);
 			if (nearest)
 			{
 				gameObject.transform.position = nearest.transform.position;

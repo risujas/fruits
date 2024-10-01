@@ -1,3 +1,5 @@
+using UnityEditor;
+
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -6,6 +8,8 @@ public class GameBoardCreation : MonoBehaviour
 	[SerializeField] private Vector2Int boardSize = new Vector2Int(6, 6);
 	[SerializeField] private GameObject slotPrefab;
 	[SerializeField] private float cameraMargin = 1.0f;
+
+	public Vector2Int BoardSize => boardSize;
 
 	public void CreateSlots()
 	{
@@ -22,7 +26,8 @@ public class GameBoardCreation : MonoBehaviour
 		{
 			for (int y = 0; y < boardSize.y; y++)
 			{
-				var newSlot = Instantiate(slotPrefab, new Vector3(x, y), Quaternion.identity, transform);
+				var newSlot = PrefabUtility.InstantiatePrefab(slotPrefab, transform) as GameObject;
+				newSlot.transform.position = new Vector3(x, y);
 				newSlot.name = "Slot_X" + x + "_Y" + y;
 			}
 		}
