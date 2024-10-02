@@ -87,4 +87,12 @@ public class GameBoardCreator : MonoBehaviour
 			DestroyImmediate(s.gameObject);
 		}
 	}
+
+	private void Update()
+	{
+		if (gameBoardInstance == null)
+		{
+			gameBoardInstance = GetComponentInChildren<GameBoard>();
+		}
+	}
 }
