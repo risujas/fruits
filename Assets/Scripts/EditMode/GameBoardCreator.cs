@@ -18,6 +18,11 @@ public class GameBoardCreator : MonoBehaviour
 
 	public void CreateBoard()
 	{
+		if (Application.isPlaying)
+		{
+			return;
+		}
+
 		if (gameBoardInstance != null)
 		{
 			DestroyImmediate(gameBoardInstance.gameObject);
@@ -66,11 +71,21 @@ public class GameBoardCreator : MonoBehaviour
 
 	public void SetCameraSize()
 	{
+		if (Application.isPlaying)
+		{
+			return;
+		}
+
 		Camera.main.orthographicSize = (boardSize.y / 2.0f) + cameraMargin;
 	}
 
 	public void FillWithRandomItems()
 	{
+		if (Application.isPlaying)
+		{
+			return;
+		}
+
 		var slots = gameBoardInstance.GetComponentsInChildren<Slot>();
 		foreach (var slot in slots)
 		{
@@ -81,6 +96,11 @@ public class GameBoardCreator : MonoBehaviour
 
 	public void DestroySlots()
 	{
+		if (Application.isPlaying)
+		{
+			return;
+		}
+
 		var slots = gameBoardInstance.GetComponentsInChildren<Slot>();
 		foreach (var s in slots)
 		{
@@ -90,6 +110,11 @@ public class GameBoardCreator : MonoBehaviour
 
 	private void Update()
 	{
+		if (Application.isPlaying)
+		{
+			return;
+		}
+
 		if (gameBoardInstance == null)
 		{
 			gameBoardInstance = GetComponentInChildren<GameBoard>();

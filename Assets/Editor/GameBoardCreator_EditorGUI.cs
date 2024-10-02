@@ -7,6 +7,8 @@ public class GameBoardCreator_EditorGUI : Editor
 {
 	public override void OnInspectorGUI()
 	{
+		GUI.enabled = !Application.isPlaying;
+
 		DrawDefaultInspector();
 
 		GameBoardCreator gameBoardCreator = (GameBoardCreator)target;
@@ -38,5 +40,7 @@ public class GameBoardCreator_EditorGUI : Editor
 		{
 			gameBoardCreator.FillWithRandomItems();
 		}
+
+		GUI.enabled = true;
 	}
 }
