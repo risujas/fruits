@@ -25,6 +25,7 @@ public class GameBoardCreator : MonoBehaviour
 		}
 
 		gameBoardInstance = (PrefabUtility.InstantiatePrefab(boardPrefab) as GameBoard);
+		gameBoardInstance.transform.parent = transform;
 		gameBoardInstance.name = "Game Board Instance";
 	}
 

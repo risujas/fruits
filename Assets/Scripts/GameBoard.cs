@@ -17,14 +17,14 @@ public class GameBoard : MonoBehaviour
 			return false;
 		}
 
-		GameBoardCreator gameBoardCreation = GetComponent<GameBoardCreator>();
+		GameBoardCreator gameBoardCreator = GameObject.FindGameObjectWithTag("Game Board Creator").GetComponent<GameBoardCreator>();
 
-		if ((firstSelectedSlot.GridPosition.x == 0 && secondSelectedSlot.GridPosition.x < 0) || (firstSelectedSlot.GridPosition.x == gameBoardCreation.BoardSize.x - 1 && secondSelectedSlot.GridPosition.x > firstSelectedSlot.GridPosition.x))
+		if ((firstSelectedSlot.GridPosition.x == 0 && secondSelectedSlot.GridPosition.x < 0) || (firstSelectedSlot.GridPosition.x == gameBoardCreator.BoardSize.x - 1 && secondSelectedSlot.GridPosition.x > firstSelectedSlot.GridPosition.x))
 		{
 			return false;
 		}
 
-		if ((firstSelectedSlot.GridPosition.y == 0 && secondSelectedSlot.GridPosition.y < 0) || (firstSelectedSlot.GridPosition.y == gameBoardCreation.BoardSize.y - 1 && secondSelectedSlot.GridPosition.y > firstSelectedSlot.GridPosition.y))
+		if ((firstSelectedSlot.GridPosition.y == 0 && secondSelectedSlot.GridPosition.y < 0) || (firstSelectedSlot.GridPosition.y == gameBoardCreator.BoardSize.y - 1 && secondSelectedSlot.GridPosition.y > firstSelectedSlot.GridPosition.y))
 		{
 			return false;
 		}
