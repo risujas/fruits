@@ -12,19 +12,25 @@ public class Slot : MonoBehaviour
 	private Vector2Int gridPosition;
 	private bool positionWasSet = false;
 
-	public Vector2Int GridPosition => gridPosition;
-
 	private SlotItem insertedItem;
-	public SlotItem InsertedItem => insertedItem;
+
+	public Vector2Int GridPosition => gridPosition;
 
 	public void InsertItem(SlotItem item)
 	{
-		Empty();
+		if (item != null)
+		{
+			Empty();
 
-		insertedItem = item;
-		insertedItem.transform.position = transform.position;
-		insertedItem.transform.rotation = Quaternion.identity;
-		insertedItem.transform.parent = transform;
+			insertedItem.transform.position = transform.position;
+			insertedItem.transform.rotation = Quaternion.identity;
+			insertedItem.transform.parent = transform;
+		}
+	}
+
+	public SlotItem GetItem()
+	{
+		return insertedItem;
 	}
 
 	public void Empty()
@@ -36,12 +42,16 @@ public class Slot : MonoBehaviour
 		}
 	}
 
+	public void UpdateInsertedItem()
+	{
+		insertedItem = GetComponentInChildren<SlotItem>();
+	}
+
 	public void SetBackgroundColor()
 	{
-		SlotItem item = GetComponentInChildren<SlotItem>();
-		if (item)
+		if (insertedItem != null)
 		{
-			background.color = item.ItemColor;
+			background.color = insertedItem.ItemColor;
 		}
 		else
 		{
@@ -51,9 +61,9 @@ public class Slot : MonoBehaviour
 
 	public void ApplyBorderHighlight()
 	{
-		if (InsertedItem)
+		if (insertedItem != null)
 		{
-			border.color = InsertedItem.ItemColor * 1.1f;
+			border.color = insertedItem.ItemColor * 1.1f;
 		}
 	}
 
@@ -75,6 +85,7 @@ public class Slot : MonoBehaviour
 
 	private void Update()
 	{
+		UpdateInsertedItem();
 		SetBackgroundColor();
 	}
 }

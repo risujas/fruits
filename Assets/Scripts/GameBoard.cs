@@ -42,8 +42,8 @@ public class GameBoard : MonoBehaviour
 
 	private void SwapItems()
 	{
-		SlotItem item1 = firstSelectedSlot.InsertedItem;
-		SlotItem item2 = secondSelectedSlot.InsertedItem;
+		SlotItem item1 = firstSelectedSlot.GetItem();
+		SlotItem item2 = secondSelectedSlot.GetItem();
 
 		item1.transform.parent = secondSelectedSlot.transform;
 		item1.transform.position = secondSelectedSlot.transform.position;
