@@ -17,7 +17,7 @@ public class GameBoard : MonoBehaviour
 			return false;
 		}
 
-		GameBoardCreation gameBoardCreation = GetComponent<GameBoardCreation>();
+		GameBoardCreator gameBoardCreation = GetComponent<GameBoardCreator>();
 
 		if ((firstSelectedSlot.GridPosition.x == 0 && secondSelectedSlot.GridPosition.x < 0) || (firstSelectedSlot.GridPosition.x == gameBoardCreation.BoardSize.x - 1 && secondSelectedSlot.GridPosition.x > firstSelectedSlot.GridPosition.x))
 		{

@@ -224,7 +224,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3.5
+  orthographic size: 4.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -339,7 +339,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &5093498244063949155
+--- !u!1001 &6791284592684720481
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -347,59 +347,59 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3469021152407613447, guid: 897b756668528f24f86fdfea68219d41, type: 3}
-      propertyPath: m_Name
-      value: Game Board
-      objectReference: {fileID: 0}
-    - target: {fileID: 8677248128563489717, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+    - target: {fileID: 6921990896830003714, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8677248128563489717, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+    - target: {fileID: 6921990896830003714, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8677248128563489717, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+    - target: {fileID: 6921990896830003714, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8677248128563489717, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+    - target: {fileID: 6921990896830003714, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8677248128563489717, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+    - target: {fileID: 6921990896830003714, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8677248128563489717, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+    - target: {fileID: 6921990896830003714, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8677248128563489717, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+    - target: {fileID: 6921990896830003714, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8677248128563489717, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+    - target: {fileID: 6921990896830003714, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8677248128563489717, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+    - target: {fileID: 6921990896830003714, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8677248128563489717, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+    - target: {fileID: 6921990896830003714, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7255926044618631747, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
+      propertyPath: m_Name
+      value: Game Board Creator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: c6b8bc981ceb879499f37a0099bc94f5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 5093498244063949155}
+  - {fileID: 6791284592684720481}

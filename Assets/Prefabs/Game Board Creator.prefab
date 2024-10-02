@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7255926044618631747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6921990896830003714}
+  - component: {fileID: 1558003761812224360}
+  m_Layer: 0
+  m_Name: Game Board Creator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6921990896830003714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255926044618631747}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1558003761812224360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255926044618631747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87120663e28ce1d4da52d0ed4c513d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableSlotItems:
+  - {fileID: 7738544357916154193, guid: 6f026be070f59e64c929e39c7924d55b, type: 3}
+  - {fileID: 7738544357916154193, guid: cdaff0ea5d4e79f43bad4b1d0db54273, type: 3}
+  - {fileID: 7738544357916154193, guid: c73a56651642c364a9beab9a7c3023f8, type: 3}
+  - {fileID: 7738544357916154193, guid: 673b9381fc47ed4469741dc72ac3b2f4, type: 3}
+  - {fileID: 7738544357916154193, guid: 657fea19d9dc40c43831831894155d8a, type: 3}
+  - {fileID: 7738544357916154193, guid: 75e622550313d23418538c42be4dd31f, type: 3}
+  - {fileID: 7738544357916154193, guid: 86dac5a6bfdd48f4fb0fbc0010155db1, type: 3}
+  - {fileID: 7738544357916154193, guid: 978587ce684cfd146b1c509bc37aff66, type: 3}
+  boardSize: {x: 7, y: 7}
+  boardPrefab: {fileID: 8738733805525040511, guid: 897b756668528f24f86fdfea68219d41, type: 3}
+  slotPrefab: {fileID: 5607670486671848538, guid: b596c6a276361404494a83a766cd2896, type: 3}
+  cameraMargin: 1

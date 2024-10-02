@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomPropertyDrawer(typeof(ReadOnly))]
-public class ReadOnlyDrawer : PropertyDrawer
+public class ReadOnly_EditorGUI : PropertyDrawer
 {
 	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 	{
