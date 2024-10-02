@@ -19,6 +19,11 @@ public class GameBoardEditor : Editor
 			gameBoardCreation.SetOffset();
 		}
 
+		if (GUILayout.Button("Destroy Slots"))
+		{
+			gameBoardCreation.DestroySlots();
+		}
+
 		if (GUILayout.Button("Set Camera Size"))
 		{
 			gameBoardCreation.SetCameraSize();

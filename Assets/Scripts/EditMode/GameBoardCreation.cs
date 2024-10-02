@@ -64,7 +64,7 @@ public class GameBoardCreation : MonoBehaviour
 		}
 	}
 
-	private void DestroySlots()
+	public void DestroySlots()
 	{
 		var slots = GetComponentsInChildren<Slot>();
 		foreach (var s in slots)
