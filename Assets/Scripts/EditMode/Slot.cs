@@ -22,6 +22,7 @@ public class Slot : MonoBehaviour
 		{
 			Empty();
 
+			insertedItem = item;
 			insertedItem.transform.position = transform.position;
 			insertedItem.transform.rotation = Quaternion.identity;
 			insertedItem.transform.parent = transform;
