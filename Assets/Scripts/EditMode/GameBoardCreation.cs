@@ -60,7 +60,7 @@ public class GameBoardCreation : MonoBehaviour
 		foreach (var slot in slots)
 		{
 			var randomItem = availableSlotItems[Random.Range(0, availableSlotItems.Count)];
-			slot.InsertItem(Instantiate(randomItem, slot.transform.position, Quaternion.identity, slot.transform));
+			slot.InsertItem(Instantiate(randomItem));
 		}
 	}
 
