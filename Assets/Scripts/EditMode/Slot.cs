@@ -19,12 +19,21 @@ public class Slot : MonoBehaviour
 
 	public void InsertItem(SlotItem item)
 	{
+		Empty();
+
+		insertedItem = item;
+		insertedItem.transform.position = transform.position;
+		insertedItem.transform.rotation = Quaternion.identity;
+		insertedItem.transform.parent = transform;
+	}
+
+	public void Empty()
+	{
 		if (insertedItem != null)
 		{
 			DestroyImmediate(insertedItem.gameObject);
+			insertedItem = null;
 		}
-
-		insertedItem = item;
 	}
 
 	public void SetBackgroundColor()
