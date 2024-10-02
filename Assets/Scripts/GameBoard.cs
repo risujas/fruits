@@ -4,6 +4,7 @@ public class GameBoard : MonoBehaviour
 {
 	private Slot firstSelectedSlot;
 	private Slot secondSelectedSlot;
+	private GameBoardCreator gameBoardCreator;
 
 	private bool IsValidMove()
 	{
@@ -17,8 +18,6 @@ public class GameBoard : MonoBehaviour
 			return false;
 		}
 
-		GameBoardCreator gameBoardCreator = GameObject.FindGameObjectWithTag("Game Board Creator").GetComponent<GameBoardCreator>();
-
 		if ((firstSelectedSlot.GridPosition.x == 0 && secondSelectedSlot.GridPosition.x < 0) || (firstSelectedSlot.GridPosition.x == gameBoardCreator.BoardSize.x - 1 && secondSelectedSlot.GridPosition.x > firstSelectedSlot.GridPosition.x))
 		{
 			return false;
@@ -31,7 +30,6 @@ public class GameBoard : MonoBehaviour
 
 		int rowDifference = Mathf.Abs(firstSelectedSlot.GridPosition.x - secondSelectedSlot.GridPosition.x);
 		int columnDifference = Mathf.Abs(firstSelectedSlot.GridPosition.y - secondSelectedSlot.GridPosition.y);
-
 		if (!((rowDifference == 1 && columnDifference == 0) || (rowDifference == 0 && columnDifference == 1)))
 		{
 			return false;
@@ -65,12 +63,12 @@ public class GameBoard : MonoBehaviour
 		{
 			if (firstSelectedSlot == null)
 			{
-				firstSelectedSlot = SlotItemPlacement.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+				firstSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 				firstSelectedSlot.ApplyBorderHighlight();
 			}
 			else
 			{
-				secondSelectedSlot = SlotItemPlacement.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+				secondSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 				firstSelectedSlot.RemoveBorderHighlight();
 
 				if (IsValidMove())
@@ -88,6 +86,11 @@ public class GameBoard : MonoBehaviour
 				secondSelectedSlot = null;
 			}
 		}
+	}
+
+	private void Awake()
+	{
+		gameBoardCreator = GameObject.FindGameObjectWithTag("Game Board Creator").GetComponent<GameBoardCreator>();
 	}
 
 	private void Update()
