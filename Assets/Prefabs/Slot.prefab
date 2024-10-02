@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 62669262241972035}
   - component: {fileID: 5607670486671848538}
-  - component: {fileID: 4158387349157411379}
   m_Layer: 0
   m_Name: Slot
   m_TagString: Untagged
@@ -47,24 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   border: {fileID: 2539539461143880885}
-  normalColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
-  highlightColor: {r: 0.60360193, g: 1, b: 0.3537736, a: 1}
-  x: 0
-  y: 0
---- !u!114 &4158387349157411379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452358362961785030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dd2301c763dea74fb261d6e4087f872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 8562692321450996087}
-  defaultColor: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+  background: {fileID: 8562692321450996087}
+  borderNormalColor: {r: 1, g: 1, b: 1, a: 1}
+  borderHighlightColor: {r: 0.936, g: 0.936, b: 0.936, a: 1}
+  backgroundNormalColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 1}
 --- !u!1 &581769810045038263
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +61,7 @@ GameObject:
   - component: {fileID: 2332325513030046832}
   - component: {fileID: 8562692321450996087}
   m_Layer: 0
-  m_Name: ContentArea
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +127,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -229,7 +214,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
