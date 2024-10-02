@@ -14,12 +14,17 @@ public class Slot : MonoBehaviour
 
 	public Vector2Int GridPosition => gridPosition;
 
-	public SlotItem InsertedItem
+	private SlotItem insertedItem;
+	public SlotItem InsertedItem => insertedItem;
+
+	public void InsertItem(SlotItem item)
 	{
-		get
+		if (insertedItem != null)
 		{
-			return GetComponentInChildren<SlotItem>();
+			DestroyImmediate(insertedItem.gameObject);
 		}
+
+		insertedItem = item;
 	}
 
 	public void SetBackgroundColor()

@@ -11,6 +11,8 @@ public class GameBoardEditor : Editor
 
 		GameBoardCreation gameBoardCreation = (GameBoardCreation)target;
 
+		GUILayout.Label("\nInitialization");
+
 		if (GUILayout.Button("Create Slots"))
 		{
 			gameBoardCreation.CreateSlots();
@@ -20,6 +22,11 @@ public class GameBoardEditor : Editor
 		if (GUILayout.Button("Set Camera Size"))
 		{
 			gameBoardCreation.SetCameraSize();
+		}
+
+		if (GUILayout.Button("Fill With Random Items"))
+		{
+			gameBoardCreation.FillWithRandomItems();
 		}
 	}
 }

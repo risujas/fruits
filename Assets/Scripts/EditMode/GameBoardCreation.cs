@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using UnityEditor;
 
 using UnityEngine;
@@ -5,6 +7,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class GameBoardCreation : MonoBehaviour
 {
+	[SerializeField] private List<SlotItem> availableSlotItems;
 	[SerializeField] private Vector2Int boardSize = new Vector2Int(6, 6);
 	[SerializeField] private GameObject slotPrefab;
 	[SerializeField] private float cameraMargin = 1.0f;
@@ -49,6 +52,16 @@ public class GameBoardCreation : MonoBehaviour
 	public void SetCameraSize()
 	{
 		Camera.main.orthographicSize = (boardSize.y / 2.0f) + cameraMargin;
+	}
+
+	public void FillWithRandomItems()
+	{
+		var slots = GetComponentsInChildren<Slot>();
+		foreach (var slot in slots)
+		{
+			var randomItem = availableSlotItems[Random.Range(0, availableSlotItems.Count)];
+			slot.InsertItem(Instantiate(randomItem, slot.transform.position, Quaternion.identity, slot.transform));
+		}
 	}
 
 	private void DestroySlots()
