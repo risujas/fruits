@@ -35,6 +35,11 @@ public class GameBoard : MonoBehaviour
 			return false;
 		}
 
+		if (firstSelectedSlot.GetItem().TypeID == secondSelectedSlot.GetItem().TypeID)
+		{
+			return false;
+		}
+
 		return true;
 	}
 
