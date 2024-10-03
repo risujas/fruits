@@ -4,7 +4,9 @@ public class GameBoard : MonoBehaviour
 {
 	private Slot firstSelectedSlot;
 	private Slot secondSelectedSlot;
-	private GameBoardCreator gameBoardCreator;
+	private Slot[,] slots = null;
+
+	public Vector2Int size;
 
 	private bool IsValidMove()
 	{
@@ -18,12 +20,12 @@ public class GameBoard : MonoBehaviour
 			return false;
 		}
 
-		if ((firstSelectedSlot.GridPosition.x == 0 && secondSelectedSlot.GridPosition.x < 0) || (firstSelectedSlot.GridPosition.x == gameBoardCreator.BoardSize.x - 1 && secondSelectedSlot.GridPosition.x > firstSelectedSlot.GridPosition.x))
+		if ((firstSelectedSlot.GridPosition.x == 0 && secondSelectedSlot.GridPosition.x < 0) || (firstSelectedSlot.GridPosition.x == size.x - 1 && secondSelectedSlot.GridPosition.x > firstSelectedSlot.GridPosition.x))
 		{
 			return false;
 		}
 
-		if ((firstSelectedSlot.GridPosition.y == 0 && secondSelectedSlot.GridPosition.y < 0) || (firstSelectedSlot.GridPosition.y == gameBoardCreator.BoardSize.y - 1 && secondSelectedSlot.GridPosition.y > firstSelectedSlot.GridPosition.y))
+		if ((firstSelectedSlot.GridPosition.y == 0 && secondSelectedSlot.GridPosition.y < 0) || (firstSelectedSlot.GridPosition.y == size.y - 1 && secondSelectedSlot.GridPosition.y > firstSelectedSlot.GridPosition.y))
 		{
 			return false;
 		}
@@ -57,10 +59,81 @@ public class GameBoard : MonoBehaviour
 
 	private bool CompleteSets()
 	{
-		// Find any completed sets, return false if none exist
+		bool foundSets = false;
 
-		return true;
+		bool horizontalSetsFound = CheckForSets(true);
+		if (horizontalSetsFound)
+		{
+			foundSets = true;
+		}
+
+		bool verticalSetsFound = CheckForSets(false);
+		if (verticalSetsFound)
+		{
+			foundSets = true;
+		}
+
+		return foundSets;
 	}
+
+	private bool CheckForSets(bool horizontal)
+	{
+		bool foundSets = false;
+
+		for (int i = 0; i < (horizontal ? size.y : size.x); i++)
+		{
+			int sequentialIdenticalItems = 1;
+			string previousType = string.Empty;
+
+			for (int j = 0; j < (horizontal ? size.x : size.y); j++)
+			{
+				var item = horizontal ? slots[j, i].GetItem() : slots[i, j].GetItem();
+
+				if (item == null)
+				{
+					sequentialIdenticalItems = 1;
+					previousType = string.Empty;
+					continue;
+				}
+
+				if (item.TypeID == previousType)
+				{
+					sequentialIdenticalItems++;
+
+					if (sequentialIdenticalItems == 3)
+					{
+						if (horizontal)
+						{
+							slots[j - 2, i].GetItem().IsPartOfSet = true;
+							slots[j - 1, i].GetItem().IsPartOfSet = true;
+							slots[j, i].GetItem().IsPartOfSet = true;
+						}
+						else
+						{
+							slots[i, j - 2].GetItem().IsPartOfSet = true;
+							slots[i, j - 1].GetItem().IsPartOfSet = true;
+							slots[i, j].GetItem().IsPartOfSet = true;
+						}
+
+						foundSets = true;
+					}
+					else if (sequentialIdenticalItems >= 4)
+					{
+						item.IsPartOfSet = true;
+					}
+				}
+				else
+				{
+					sequentialIdenticalItems = 1;
+				}
+
+				previousType = item.TypeID;
+			}
+		}
+
+		return foundSets;
+	}
+
 
 	private void HandleInput()
 	{
@@ -85,6 +158,16 @@ public class GameBoard : MonoBehaviour
 					{
 						SwapItems();
 					}
+					else
+					{
+						foreach (var slot in slots)
+						{
+							if (slot.GetItem() != null && slot.GetItem().IsPartOfSet)
+							{
+								slot.Empty();
+							}
+						}
+					}
 				}
 
 				firstSelectedSlot = null;
@@ -93,9 +176,15 @@ public class GameBoard : MonoBehaviour
 		}
 	}
 
-	private void Awake()
+	private void Start()
 	{
-		gameBoardCreator = GameObject.FindGameObjectWithTag("Game Board Creator").GetComponent<GameBoardCreator>();
+		slots = new Slot[size.x, size.y];
+
+		var slotObjects = GetComponentsInChildren<Slot>();
+		foreach (var so in slotObjects)
+		{
+			slots[so.GridPosition.x, so.GridPosition.y] = so;
+		}
 	}
 
 	private void Update()

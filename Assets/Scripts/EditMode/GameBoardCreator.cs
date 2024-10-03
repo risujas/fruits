@@ -32,6 +32,7 @@ public class GameBoardCreator : MonoBehaviour
 		gameBoardInstance = (PrefabUtility.InstantiatePrefab(boardPrefab) as GameBoard);
 		gameBoardInstance.transform.parent = transform;
 		gameBoardInstance.name = "Game Board Instance";
+		gameBoardInstance.size = boardSize;
 	}
 
 	public void CreateSlots()
@@ -69,16 +70,6 @@ public class GameBoardCreator : MonoBehaviour
 		gameBoardInstance.transform.position -= transform.up * ((boardSize.y / 2.0f) - slotWidth);
 	}
 
-	public void SetCameraSize()
-	{
-		if (Application.isPlaying)
-		{
-			return;
-		}
-
-		Camera.main.orthographicSize = (boardSize.y / 2.0f) + cameraMargin;
-	}
-
 	public void FillWithRandomItems()
 	{
 		if (Application.isPlaying)
@@ -102,10 +93,23 @@ public class GameBoardCreator : MonoBehaviour
 		}
 
 		var slots = gameBoardInstance.GetComponentsInChildren<Slot>();
-		foreach (var s in slots)
+		if (slots != null)
 		{
-			DestroyImmediate(s.gameObject);
+			foreach (var s in slots)
+			{
+				DestroyImmediate(s.gameObject);
+			}
 		}
+	}
+
+	public void SetCameraSize()
+	{
+		if (Application.isPlaying)
+		{
+			return;
+		}
+
+		Camera.main.orthographicSize = (boardSize.y / 2.0f) + cameraMargin;
 	}
 
 	private void Update()

@@ -57,7 +57,14 @@ public class Slot : MonoBehaviour
 	{
 		if (insertedItem != null)
 		{
-			Destroy(insertedItem.gameObject);
+			if (Application.isPlaying)
+			{
+				Destroy(insertedItem.gameObject);
+			}
+			else
+			{
+				DestroyImmediate(insertedItem.gameObject);
+			}
 			insertedItem = null;
 		}
 	}
