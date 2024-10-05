@@ -57,17 +57,17 @@ public class GameBoard : MonoBehaviour
 		item2.transform.position = firstSelectedSlot.transform.position;
 	}
 
-	private bool CompleteSets()
+	private bool CompleteSets(bool breakAfterFirst)
 	{
 		bool foundSets = false;
 
-		bool horizontalSetsFound = CheckForSets(true);
+		bool horizontalSetsFound = CheckForSets(true, breakAfterFirst);
 		if (horizontalSetsFound)
 		{
 			foundSets = true;
 		}
 
-		bool verticalSetsFound = CheckForSets(false);
+		bool verticalSetsFound = CheckForSets(false, breakAfterFirst);
 		if (verticalSetsFound)
 		{
 			foundSets = true;
@@ -76,7 +76,7 @@ public class GameBoard : MonoBehaviour
 		return foundSets;
 	}
 
-	private bool CheckForSets(bool horizontal)
+	private bool CheckForSets(bool horizontal, bool breakAfterFirst)
 	{
 		bool foundSets = false;
 
@@ -153,25 +153,26 @@ public class GameBoard : MonoBehaviour
 				{
 					SwapItems();
 
-					bool foundSets = CompleteSets();
+					bool foundSets = CompleteSets(true);
 					if (!foundSets)
 					{
 						SwapItems();
-					}
-					else
-					{
-						foreach (var slot in slots)
-						{
-							if (slot.GetItem() != null && slot.GetItem().IsPartOfSet)
-							{
-								slot.Empty();
-							}
-						}
 					}
 				}
 
 				firstSelectedSlot = null;
 				secondSelectedSlot = null;
+			}
+		}
+	}
+
+	private void DestroyItems()
+	{
+		foreach (var slot in slots)
+		{
+			if (slot.GetItem() != null && slot.GetItem().IsPartOfSet)
+			{
+				slot.Empty();
 			}
 		}
 	}
@@ -190,5 +191,7 @@ public class GameBoard : MonoBehaviour
 	private void Update()
 	{
 		HandleInput();
+		CompleteSets(false);
+		DestroyItems();
 	}
 }
