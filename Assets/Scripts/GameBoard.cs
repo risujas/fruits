@@ -190,8 +190,13 @@ public class GameBoard : MonoBehaviour
 
 	private void Update()
 	{
-		HandleInput();
-		CompleteSets(false);
+		bool readyForInput = !CompleteSets(false);
+
+		if (readyForInput)
+		{
+			HandleInput();
+		}
+
 		DestroyItems();
 	}
 }
