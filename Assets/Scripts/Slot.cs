@@ -35,11 +35,14 @@ public class Slot : MonoBehaviour
 		return nearest;
 	}
 
-	public void InsertItem(SlotItem item)
+	public void InsertItem(SlotItem item, bool destroyExistingItem)
 	{
 		if (item != null)
 		{
-			Empty();
+			if (destroyExistingItem)
+			{
+				Empty();
+			}
 
 			insertedItem = item;
 			insertedItem.transform.position = transform.position;

@@ -50,11 +50,8 @@ public class GameBoard : MonoBehaviour
 		SlotItem item1 = firstSelectedSlot.GetItem();
 		SlotItem item2 = secondSelectedSlot.GetItem();
 
-		item1.transform.parent = secondSelectedSlot.transform;
-		item1.transform.position = secondSelectedSlot.transform.position;
-
-		item2.transform.parent = firstSelectedSlot.transform;
-		item2.transform.position = firstSelectedSlot.transform.position;
+		firstSelectedSlot.InsertItem(item2, false);
+		secondSelectedSlot.InsertItem(item1, false);
 	}
 
 	private bool CompleteSets(bool breakAfterFirst)
