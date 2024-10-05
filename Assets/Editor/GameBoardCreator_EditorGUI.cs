@@ -7,9 +7,9 @@ public class GameBoardCreator_EditorGUI : Editor
 {
 	public override void OnInspectorGUI()
 	{
-		GUI.enabled = !Application.isPlaying;
-
 		DrawDefaultInspector();
+
+		GUI.enabled = !Application.isPlaying;
 
 		GameBoardCreator gameBoardCreator = (GameBoardCreator)target;
 
