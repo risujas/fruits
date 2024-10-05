@@ -97,26 +97,29 @@ public class GameBoard : MonoBehaviour
 				{
 					sequentialIdenticalItems++;
 
-					if (sequentialIdenticalItems == 3)
+					if (sequentialIdenticalItems >= 3)
 					{
-						if (horizontal)
+						if (sequentialIdenticalItems == 3)
 						{
-							slots[j - 2, i].GetItem().IsPartOfSet = true;
-							slots[j - 1, i].GetItem().IsPartOfSet = true;
-							slots[j, i].GetItem().IsPartOfSet = true;
+							if (horizontal)
+							{
+								slots[j - 2, i].GetItem().IsPartOfSet = true;
+								slots[j - 1, i].GetItem().IsPartOfSet = true;
+								slots[j, i].GetItem().IsPartOfSet = true;
+							}
+							else
+							{
+								slots[i, j - 2].GetItem().IsPartOfSet = true;
+								slots[i, j - 1].GetItem().IsPartOfSet = true;
+								slots[i, j].GetItem().IsPartOfSet = true;
+							}
+
+							foundSets = true;
 						}
 						else
 						{
-							slots[i, j - 2].GetItem().IsPartOfSet = true;
-							slots[i, j - 1].GetItem().IsPartOfSet = true;
-							slots[i, j].GetItem().IsPartOfSet = true;
+							item.IsPartOfSet = true;
 						}
-
-						foundSets = true;
-					}
-					else if (sequentialIdenticalItems >= 4)
-					{
-						item.IsPartOfSet = true;
 					}
 				}
 				else
