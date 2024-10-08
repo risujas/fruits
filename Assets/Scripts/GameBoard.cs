@@ -45,13 +45,13 @@ public class GameBoard : MonoBehaviour
 		return true;
 	}
 
-	private void SwapItems()
+	private void SwapItems(Slot firstSlot, Slot secondSlot)
 	{
-		SlotItem item1 = firstSelectedSlot.GetItem();
-		SlotItem item2 = secondSelectedSlot.GetItem();
+		SlotItem item1 = firstSlot.GetItem();
+		SlotItem item2 = secondSlot.GetItem();
 
-		firstSelectedSlot.InsertItem(item2, false);
-		secondSelectedSlot.InsertItem(item1, false);
+		firstSlot.InsertItem(item2, false);
+		secondSlot.InsertItem(item1, false);
 	}
 
 	private bool CheckForSets(bool breakAfterFirst, bool markItems)
@@ -158,12 +158,12 @@ public class GameBoard : MonoBehaviour
 
 				if (IsValidMove())
 				{
-					SwapItems();
+					SwapItems(firstSelectedSlot, secondSelectedSlot);
 
 					bool foundSets = CheckForSets(true, false);
 					if (!foundSets)
 					{
-						SwapItems();
+						SwapItems(firstSelectedSlot, secondSelectedSlot);
 					}
 				}
 
@@ -186,7 +186,12 @@ public class GameBoard : MonoBehaviour
 
 	private void MakeItemsFall()
 	{
-		// TODO
+		foreach (var s in slots)
+		{
+			if (s.GetItem() == null)
+			{
+			}
+		}
 	}
 
 	private void SpawnAdditionalItems()
