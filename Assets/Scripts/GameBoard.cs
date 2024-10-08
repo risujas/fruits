@@ -181,6 +181,16 @@ public class GameBoard : MonoBehaviour
 		}
 	}
 
+	private void MakeItemsFall()
+	{
+
+	}
+
+	private void SpawnAdditionalItems()
+	{
+
+	}
+
 	private void Start()
 	{
 		slots = new Slot[size.x, size.y];
@@ -202,5 +212,7 @@ public class GameBoard : MonoBehaviour
 		}
 
 		DestroyItems();
+		MakeItemsFall();
+		SpawnAdditionalItems();
 	}
 }
