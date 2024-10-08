@@ -16,7 +16,7 @@ public class GameBoardCreator : MonoBehaviour
 
 	public Vector2Int BoardSize => boardSize;
 
-	public List<SlotItem> SelectedItems
+	public List<SlotItem> CulledSelectedItems
 	{
 		get
 		{
@@ -88,7 +88,7 @@ public class GameBoardCreator : MonoBehaviour
 
 	public void FillWithRandomItems()
 	{
-		if (Application.isPlaying)
+		if (Application.isPlaying || CulledSelectedItems.Count == 0)
 		{
 			return;
 		}
@@ -96,7 +96,7 @@ public class GameBoardCreator : MonoBehaviour
 		var slots = gameBoardInstance.GetComponentsInChildren<Slot>();
 		foreach (var slot in slots)
 		{
-			var randomItem = SelectedItems[Random.Range(0, SelectedItems.Count)];
+			var randomItem = CulledSelectedItems[Random.Range(0, CulledSelectedItems.Count)];
 			slot.InsertItem(Instantiate(randomItem), true);
 		}
 	}
