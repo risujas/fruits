@@ -54,17 +54,17 @@ public class GameBoard : MonoBehaviour
 		secondSelectedSlot.InsertItem(item1, false);
 	}
 
-	private bool CompleteSets(bool breakAfterFirst)
+	private bool CheckForSets(bool breakAfterFirst, bool markItems)
 	{
 		bool foundSets = false;
 
-		bool horizontalSetsFound = CheckForSets(true, breakAfterFirst);
+		bool horizontalSetsFound = CheckForSetRow(true, breakAfterFirst, markItems);
 		if (horizontalSetsFound)
 		{
 			foundSets = true;
 		}
 
-		bool verticalSetsFound = CheckForSets(false, breakAfterFirst);
+		bool verticalSetsFound = CheckForSetRow(false, breakAfterFirst, markItems);
 		if (verticalSetsFound)
 		{
 			foundSets = true;
@@ -73,7 +73,7 @@ public class GameBoard : MonoBehaviour
 		return foundSets;
 	}
 
-	private bool CheckForSets(bool horizontal, bool breakAfterFirst)
+	private bool CheckForSetRow(bool horizontal, bool breakAfterFirst, bool markItems)
 	{
 		bool foundSets = false;
 
@@ -99,29 +99,32 @@ public class GameBoard : MonoBehaviour
 
 					if (sequentialIdenticalItems >= 3)
 					{
-						if (sequentialIdenticalItems == 3)
+						if (markItems)
 						{
-							if (horizontal)
+							if (sequentialIdenticalItems == 3)
 							{
-								slots[j - 2, i].GetItem().IsPartOfSet = true;
-								slots[j - 1, i].GetItem().IsPartOfSet = true;
-								slots[j, i].GetItem().IsPartOfSet = true;
+								if (horizontal)
+								{
+									slots[j - 2, i].GetItem().IsPartOfSet = true;
+									slots[j - 1, i].GetItem().IsPartOfSet = true;
+									slots[j, i].GetItem().IsPartOfSet = true;
+								}
+								else
+								{
+									slots[i, j - 2].GetItem().IsPartOfSet = true;
+									slots[i, j - 1].GetItem().IsPartOfSet = true;
+									slots[i, j].GetItem().IsPartOfSet = true;
+								}
+								foundSets = true;
 							}
 							else
 							{
-								slots[i, j - 2].GetItem().IsPartOfSet = true;
-								slots[i, j - 1].GetItem().IsPartOfSet = true;
-								slots[i, j].GetItem().IsPartOfSet = true;
+								item.IsPartOfSet = true;
 							}
-
-							foundSets = true;
-						}
-						else
-						{
-							item.IsPartOfSet = true;
 						}
 						if (breakAfterFirst)
 						{
+							foundSets = true;
 							break;
 						}
 					}
@@ -157,7 +160,7 @@ public class GameBoard : MonoBehaviour
 				{
 					SwapItems();
 
-					bool foundSets = CompleteSets(true);
+					bool foundSets = CheckForSets(true, false);
 					if (!foundSets)
 					{
 						SwapItems();
@@ -204,15 +207,15 @@ public class GameBoard : MonoBehaviour
 
 	private void Update()
 	{
-		bool readyForInput = !CompleteSets(false);
+		bool readyForInput = !CheckForSets(false, true);
+
+		DestroyItems();
+		MakeItemsFall();
+		SpawnAdditionalItems();
 
 		if (readyForInput)
 		{
 			HandleInput();
 		}
-
-		DestroyItems();
-		MakeItemsFall();
-		SpawnAdditionalItems();
 	}
 }
