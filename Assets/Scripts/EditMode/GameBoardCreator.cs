@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-
 using UnityEditor;
 
 using UnityEngine;
@@ -8,6 +7,7 @@ using UnityEngine;
 public class GameBoardCreator : MonoBehaviour
 {
 	[SerializeField] private List<SlotItem> availableSlotItems;
+	[SerializeField, HideInInspector] private List<SlotItem> selectedItems = null;
 	[SerializeField] private Vector2Int boardSize = new Vector2Int(6, 6);
 	[SerializeField] private GameBoard boardPrefab;
 	[SerializeField] private GameBoard gameBoardInstance;
@@ -15,6 +15,22 @@ public class GameBoardCreator : MonoBehaviour
 	[SerializeField] private float cameraMargin = 1.0f;
 
 	public Vector2Int BoardSize => boardSize;
+
+	public List<SlotItem> SelectedItems
+	{
+		get
+		{
+			List<SlotItem> culledList = new();
+			foreach (var i in selectedItems)
+			{
+				if (i != null)
+				{
+					culledList.Add(i);
+				}
+			}
+			return culledList;
+		}
+	}
 
 	public void CreateBoard()
 	{
@@ -80,7 +96,7 @@ public class GameBoardCreator : MonoBehaviour
 		var slots = gameBoardInstance.GetComponentsInChildren<Slot>();
 		foreach (var slot in slots)
 		{
-			var randomItem = availableSlotItems[Random.Range(0, availableSlotItems.Count)];
+			var randomItem = SelectedItems[Random.Range(0, SelectedItems.Count)];
 			slot.InsertItem(Instantiate(randomItem), true);
 		}
 	}
