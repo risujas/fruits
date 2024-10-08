@@ -194,6 +194,11 @@ public class GameBoard : MonoBehaviour
 		// TODO
 	}
 
+	private bool BoardHasEmptySlots()
+	{
+		return false;
+	}
+
 	private void Start()
 	{
 		slots = new Slot[size.x, size.y];
@@ -207,13 +212,20 @@ public class GameBoard : MonoBehaviour
 
 	private void Update()
 	{
-		bool readyForInput = !CheckForSets(false, true);
+		bool hasCompletedSets = CheckForSets(false, true);
+		if (hasCompletedSets)
+		{
+			DestroyItems();
+		}
 
-		DestroyItems();
-		MakeItemsFall();
-		SpawnAdditionalItems();
-
-		if (readyForInput)
+		bool hasEmptySlots = BoardHasEmptySlots();
+		if (hasEmptySlots)
+		{
+			MakeItemsFall();
+			SpawnAdditionalItems();
+		}
+		
+		if (!hasCompletedSets && !hasEmptySlots)
 		{
 			HandleInput();
 		}
