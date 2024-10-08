@@ -120,6 +120,10 @@ public class GameBoard : MonoBehaviour
 						{
 							item.IsPartOfSet = true;
 						}
+						if (breakAfterFirst)
+						{
+							break;
+						}
 					}
 				}
 				else
