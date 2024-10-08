@@ -188,9 +188,7 @@ public class GameBoard : MonoBehaviour
 	{
 		foreach (var s in slots)
 		{
-			if (s.GetItem() == null)
-			{
-			}
+			// TODO
 		}
 	}
 
@@ -201,6 +199,13 @@ public class GameBoard : MonoBehaviour
 
 	private bool BoardHasEmptySlots()
 	{
+		foreach (var s in slots)
+		{
+			if (s.GetItem() == null)
+			{
+				return true;
+			}
+		}
 		return false;
 	}
 
