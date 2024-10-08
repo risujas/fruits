@@ -5,8 +5,19 @@ public class GameBoard : MonoBehaviour
 	private Slot firstSelectedSlot;
 	private Slot secondSelectedSlot;
 	private Slot[,] slots = null;
+	[SerializeField, HideInInspector] private Vector2Int size;
 
-	public Vector2Int size;
+	public Vector2Int Size
+	{
+		get 
+		{
+			return size;
+		}
+		set
+		{
+			size = value;
+		}
+	}
 
 	private bool IsValidMove()
 	{

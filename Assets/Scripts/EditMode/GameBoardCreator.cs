@@ -6,15 +6,15 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class GameBoardCreator : MonoBehaviour
 {
+	[SerializeField] private GameBoard gameBoardInstance;
+	
+	[Header("Configuration")]
 	[SerializeField] private List<SlotItem> availableSlotItems;
 	[SerializeField, HideInInspector] private List<SlotItem> selectedItems = null;
-	[SerializeField] private Vector2Int boardSize = new Vector2Int(6, 6);
 	[SerializeField] private GameBoard boardPrefab;
-	[SerializeField] private GameBoard gameBoardInstance;
 	[SerializeField] private Slot slotPrefab;
+	[SerializeField] private Vector2Int boardSize = new Vector2Int(6, 6);
 	[SerializeField] private float cameraMargin = 1.0f;
-
-	public Vector2Int BoardSize => boardSize;
 
 	public List<SlotItem> CulledSelectedItems
 	{
@@ -48,7 +48,7 @@ public class GameBoardCreator : MonoBehaviour
 		gameBoardInstance = PrefabUtility.InstantiatePrefab(boardPrefab) as GameBoard;
 		gameBoardInstance.transform.parent = transform;
 		gameBoardInstance.name = "Game Board Instance";
-		gameBoardInstance.size = boardSize;
+		gameBoardInstance.Size = boardSize;
 	}
 
 	public void CreateSlots()

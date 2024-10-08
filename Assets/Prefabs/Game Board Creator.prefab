@@ -53,8 +53,9 @@ MonoBehaviour:
   - {fileID: 7738544357916154193, guid: 75e622550313d23418538c42be4dd31f, type: 3}
   - {fileID: 7738544357916154193, guid: 86dac5a6bfdd48f4fb0fbc0010155db1, type: 3}
   - {fileID: 7738544357916154193, guid: 978587ce684cfd146b1c509bc37aff66, type: 3}
-  boardSize: {x: 7, y: 7}
+  selectedItems: []
+  boardSize: {x: 8, y: 8}
   boardPrefab: {fileID: 8738733805525040511, guid: 897b756668528f24f86fdfea68219d41, type: 3}
   gameBoardInstance: {fileID: 0}
   slotPrefab: {fileID: 5607670486671848538, guid: b596c6a276361404494a83a766cd2896, type: 3}
-  cameraMargin: 1
+  cameraMargin: 0.2
