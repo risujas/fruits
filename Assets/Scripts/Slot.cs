@@ -8,7 +8,7 @@ public class Slot : MonoBehaviour
 	[SerializeField] private Color borderDefaultColor = Color.white;
 	[SerializeField] private Color backgroundDefaultColor = Color.black;
 
-	private SlotItem insertedItem;
+	[SerializeField, ReadOnly] private SlotItem insertedItem;
 
 	[SerializeField, ReadOnly] private Vector2Int gridPosition;
 	private bool positionWasSet = false;
@@ -68,13 +68,8 @@ public class Slot : MonoBehaviour
 			{
 				DestroyImmediate(insertedItem.gameObject);
 			}
-			insertedItem = null;
 		}
-	}
-
-	public void UpdateInsertedItem()
-	{
-		insertedItem = GetComponentInChildren<SlotItem>();
+		insertedItem = null;
 	}
 
 	public void SetBackgroundColor()
@@ -115,7 +110,6 @@ public class Slot : MonoBehaviour
 
 	private void Update()
 	{
-		UpdateInsertedItem();
 		SetBackgroundColor();
 	}
 }

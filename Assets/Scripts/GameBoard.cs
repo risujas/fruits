@@ -152,7 +152,6 @@ public class GameBoard : MonoBehaviour
 		return foundSets;
 	}
 
-
 	private void HandleInput()
 	{
 		if (Input.GetMouseButtonUp(0))
