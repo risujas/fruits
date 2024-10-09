@@ -34,7 +34,7 @@ public class SlotItemPlacement : MonoBehaviour
         }
     }
 
-    private void DetectMouseInput()
+    private void DetectMouseInput() // this shit don't work
     {
         if (!Application.isPlaying)
         {
@@ -44,11 +44,13 @@ public class SlotItemPlacement : MonoBehaviour
             {
                 isMouseButtonPressed = true;
                 hasProcessedMouseRelease = false; 
+				Debug.Log("Mouse Down");
             }
 
             if (e != null && e.type == EventType.MouseUp && e.button == 0)
             {
                 isMouseButtonPressed = false;
+				Debug.Log("Mouse Up");
             }
         }
     }
