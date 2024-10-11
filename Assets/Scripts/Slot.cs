@@ -111,5 +111,10 @@ public class Slot : MonoBehaviour
 	private void Update()
 	{
 		SetBackgroundColor();
+
+		if (insertedItem == null)
+		{
+			insertedItem = GetComponentInChildren<SlotItem>();
+		}
 	}
 }

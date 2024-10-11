@@ -196,10 +196,22 @@ public class GameBoard : MonoBehaviour
 
 	private void MakeItemsFall()
 	{
-		foreach (var s in slots)
-		{
-			// TODO
-		}
+		// TODO
+
+		// for (int y = size.y - 1; y > 0; y--)
+		// {
+		// 	for (int x = 0; x < size.x; x++)
+		// 	{
+		// 		var currentSlot = slots[x, y];
+		// 		var belowSlot = slots[x, y - 1];
+		// 		var currentItem = currentSlot.GetItem();
+
+		// 		if (belowSlot.GetItem() == null && currentItem != null)
+		// 		{
+		// 			belowSlot.InsertItem(currentItem, false);
+		// 		}
+		// 	}
+		// }
 	}
 
 	private void SpawnAdditionalItems()
@@ -235,12 +247,14 @@ public class GameBoard : MonoBehaviour
 		bool hasCompletedSets = CheckForSets(false, true);
 		if (hasCompletedSets)
 		{
+			Debug.Log("Board has completed sets waiting to be destroyed");
 			DestroyItems();
 		}
 
 		bool hasEmptySlots = BoardHasEmptySlots();
 		if (hasEmptySlots)
 		{
+			Debug.Log("Board has empty slots waiting to be filled");
 			MakeItemsFall();
 			SpawnAdditionalItems();
 		}
