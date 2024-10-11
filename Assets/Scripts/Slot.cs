@@ -6,7 +6,7 @@ public class Slot : MonoBehaviour
 	[SerializeField] private SpriteRenderer background;
 
 	[SerializeField] private Color borderDefaultColor = Color.white;
-	[SerializeField] private Color backgroundDefaultColor = Color.black;
+	[SerializeField] private Color backgroundDefaultColor = Color.white;
 
 	[SerializeField, ReadOnly] private Vector2Int gridPosition;
 	private bool positionWasSet = false;

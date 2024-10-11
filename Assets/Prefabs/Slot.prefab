@@ -48,7 +48,7 @@ MonoBehaviour:
   border: {fileID: 2539539461143880885}
   background: {fileID: 8562692321450996087}
   borderDefaultColor: {r: 1, g: 1, b: 1, a: 1}
-  backgroundDefaultColor: {r: 0, g: 0, b: 0, a: 1}
+  backgroundDefaultColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   gridPosition: {x: 0, y: 0}
 --- !u!1 &581769810045038263
 GameObject:
