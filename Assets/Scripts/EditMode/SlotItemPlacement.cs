@@ -5,8 +5,26 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class SlotItemPlacement : MonoBehaviour
 {
-    private bool isMouseButtonPressed = false;
-    private bool hasProcessedMouseRelease = false;
+    private Slot slot;
+
+    private void FindSlot()
+    {
+        slot = Slot.FindNearestSlot(transform.position);
+        if (slot.GetItem() == null)
+        {
+            slot.InsertItem(GetComponent<SlotItem>(), false);
+        }
+    }
+
+    private void MatchSlotPosition()
+    {
+        slot = GetComponentInParent<Slot>();
+        if (slot != null)
+        {
+            transform.position = slot.transform.position;
+            transform.parent = slot.transform;
+        }
+    }
 
     private void Update()
     {
@@ -15,43 +33,12 @@ public class SlotItemPlacement : MonoBehaviour
             return;
         }
 
-        if (!PrefabStageUtility.GetCurrentPrefabStage())
+        if (PrefabStageUtility.GetCurrentPrefabStage())
         {
-            Slot nearest = Slot.FindNearestSlot(transform.position);
-            if (nearest)
-            {
-                transform.position = nearest.transform.position;
-                transform.parent = nearest.transform;
-
-                DetectMouseInput();
-
-                if (!isMouseButtonPressed && !hasProcessedMouseRelease)
-                {
-                	nearest.InsertItem(GetComponent<SlotItem>(), true);
-                    hasProcessedMouseRelease = true; 
-                }
-            }
+            return;
         }
-    }
 
-    private void DetectMouseInput() // this shit don't work
-    {
-        if (!Application.isPlaying)
-        {
-            Event e = Event.current;
-
-            if (e != null && e.type == EventType.MouseDown && e.button == 0)
-            {
-                isMouseButtonPressed = true;
-                hasProcessedMouseRelease = false; 
-				Debug.Log("Mouse Down");
-            }
-
-            if (e != null && e.type == EventType.MouseUp && e.button == 0)
-            {
-                isMouseButtonPressed = false;
-				Debug.Log("Mouse Up");
-            }
-        }
+        FindSlot();
+        MatchSlotPosition();
     }
 }
