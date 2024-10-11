@@ -35,7 +35,7 @@ public class Slot : MonoBehaviour
 		return nearest;
 	}
 
-	public void InsertItem(SlotItem item, bool destroyExistingItem)
+	public void InsertItem(SlotItem item, bool destroyExistingItem, bool useSlowTransition)
 	{
 		if (item != null)
 		{
@@ -45,9 +45,17 @@ public class Slot : MonoBehaviour
 			}
 
 			insertedItem = item;
-			insertedItem.transform.position = transform.position;
-			insertedItem.transform.rotation = Quaternion.identity;
 			insertedItem.transform.parent = transform;
+			insertedItem.transform.rotation = Quaternion.identity;
+
+			if (useSlowTransition)
+			{
+				insertedItem.MoveToPosition(transform.position, 0.2f);
+			}
+			else
+			{
+				insertedItem.transform.position = transform.position;
+			}
 		}
 	}
 

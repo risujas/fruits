@@ -61,8 +61,8 @@ public class GameBoard : MonoBehaviour
 		SlotItem item1 = firstSlot.GetItem();
 		SlotItem item2 = secondSlot.GetItem();
 
-		firstSlot.InsertItem(item2, false);
-		secondSlot.InsertItem(item1, false);
+		firstSlot.InsertItem(item2, false, true);
+		secondSlot.InsertItem(item1, false, true);
 	}
 
 	private bool CheckForSets(bool breakAfterFirst, bool markItems)
@@ -231,6 +231,25 @@ public class GameBoard : MonoBehaviour
 		return false;
 	}
 
+	private bool BoardHasMovingItems()
+	{
+		foreach (var s in slots)
+		{
+			var item = s.GetItem();
+
+			if (item == null)
+			{
+				continue;
+			}
+
+			if (s.GetItem().IsMoving)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private void Start()
 	{
 		slots = new Slot[size.x, size.y];
@@ -244,6 +263,11 @@ public class GameBoard : MonoBehaviour
 
 	private void Update()
 	{
+		if (BoardHasMovingItems())
+		{
+			return;
+		}
+
 		bool hasCompletedSets = CheckForSets(false, true);
 		if (hasCompletedSets)
 		{

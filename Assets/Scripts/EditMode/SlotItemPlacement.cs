@@ -9,10 +9,11 @@ public class SlotItemPlacement : MonoBehaviour
 
     private void FindSlot()
     {
-        slot = Slot.FindNearestSlot(transform.position);
-        if (slot.GetItem() == null)
+        var nearest = Slot.FindNearestSlot(transform.position);
+        if (nearest.GetItem() == null)
         {
-            slot.InsertItem(GetComponent<SlotItem>(), false);
+            slot = nearest;
+            transform.parent = slot.transform;
         }
     }
 
@@ -22,7 +23,6 @@ public class SlotItemPlacement : MonoBehaviour
         if (slot != null)
         {
             transform.position = slot.transform.position;
-            transform.parent = slot.transform;
         }
     }
 

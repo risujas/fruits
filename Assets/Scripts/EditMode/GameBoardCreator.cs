@@ -99,7 +99,7 @@ public class GameBoardCreator : MonoBehaviour
 			var randomItem = CulledSelectedItems[Random.Range(0, CulledSelectedItems.Count)];
 			var newItem = Instantiate(randomItem);
 			newItem.GetComponent<SlotItemPlacement>().enabled = false;
-			slot.InsertItem(newItem, true);
+			slot.InsertItem(newItem, true, false);
 		}
 	}
 
