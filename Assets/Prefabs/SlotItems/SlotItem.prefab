@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
+  typeID: 
 --- !u!114 &-7843037056545808842
 MonoBehaviour:
   m_ObjectHideFlags: 0

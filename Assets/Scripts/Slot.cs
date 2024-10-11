@@ -15,6 +15,9 @@ public class Slot : MonoBehaviour
 
 	public SlotItem insertedItem => GetComponentInChildren<SlotItem>();
 
+	private Color targetBackgroundColor;
+	private const float colorLerpSpeed = 5.0f;
+
 	public static Slot FindNearestSlot(Vector3 point)
 	{
 		Slot nearest = null;
@@ -80,14 +83,8 @@ public class Slot : MonoBehaviour
 
 	public void SetBackgroundColor()
 	{
-		if (insertedItem != null)
-		{
-			background.color = insertedItem.ItemColor;
-		}
-		else
-		{
-			background.color = backgroundDefaultColor;
-		}
+		targetBackgroundColor = insertedItem == null ? backgroundDefaultColor : insertedItem.ItemColor;
+		background.color = Color.Lerp(background.color, targetBackgroundColor, Time.deltaTime * colorLerpSpeed);
 	}
 
 	public void ApplyBorderHighlight()
