@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameBoard : MonoBehaviour
 {
+	private GameBoardCreator gameBoardCreator;
 	private Slot firstSelectedSlot;
 	private Slot secondSelectedSlot;
 	private Slot[,] slots = null;
@@ -196,6 +197,8 @@ public class GameBoard : MonoBehaviour
 
 	private void MakeItemsFall()
 	{
+		// TODO, after implementing blocker tiles, make sure items can fall diagonally
+
 		for (int y = size.y - 1; y > 0; y--)
 		{
 			for (int x = 0; x < size.x; x++)
@@ -214,14 +217,14 @@ public class GameBoard : MonoBehaviour
 
 	private void SpawnAdditionalItems()
 	{
-		GameBoardCreator creator = GetComponentInParent<GameBoardCreator>();
+		// TODO Algorithmically spawn items to ensure that valid combinations exist
 
 		for (int x = 0; x < size.x; x++)
 		{
 			var slot = slots[x, size.y - 1];
 			if (slot.GetItem() == null)
 			{
-				var randomItem = creator.CulledSelectedItems[Random.Range(0, creator.CulledSelectedItems.Count)];
+				var randomItem = gameBoardCreator.CulledSelectedItems[Random.Range(0, gameBoardCreator.CulledSelectedItems.Count)];
 				var newItem = Instantiate(randomItem, slot.transform.position + Vector3.up, Quaternion.identity);
 				slot.InsertItem(newItem, false, true);
 			}
@@ -261,6 +264,8 @@ public class GameBoard : MonoBehaviour
 
 	private void Start()
 	{
+		gameBoardCreator = GetComponentInParent<GameBoardCreator>();
+
 		slots = new Slot[size.x, size.y];
 
 		var slotObjects = GetComponentsInChildren<Slot>();
