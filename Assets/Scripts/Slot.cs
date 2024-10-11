@@ -8,12 +8,12 @@ public class Slot : MonoBehaviour
 	[SerializeField] private Color borderDefaultColor = Color.white;
 	[SerializeField] private Color backgroundDefaultColor = Color.black;
 
-	[SerializeField, ReadOnly] private SlotItem insertedItem;
-
 	[SerializeField, ReadOnly] private Vector2Int gridPosition;
 	private bool positionWasSet = false;
 
 	public Vector2Int GridPosition => gridPosition;
+
+	public SlotItem insertedItem => GetComponentInChildren<SlotItem>();
 
 	public static Slot FindNearestSlot(Vector3 point)
 	{
@@ -44,17 +44,16 @@ public class Slot : MonoBehaviour
 				Empty();
 			}
 
-			insertedItem = item;
-			insertedItem.transform.parent = transform;
-			insertedItem.transform.rotation = Quaternion.identity;
+			item.transform.parent = transform;
+			item.transform.rotation = Quaternion.identity;
 
 			if (useSlowTransition)
 			{
-				insertedItem.MoveToPosition(transform.position, 0.2f);
+				item.MoveToPosition(transform.position, 0.2f);
 			}
 			else
 			{
-				insertedItem.transform.position = transform.position;
+				item.transform.position = transform.position;
 			}
 		}
 	}
@@ -77,7 +76,6 @@ public class Slot : MonoBehaviour
 				DestroyImmediate(insertedItem.gameObject);
 			}
 		}
-		insertedItem = null;
 	}
 
 	public void SetBackgroundColor()
@@ -119,10 +117,5 @@ public class Slot : MonoBehaviour
 	private void Update()
 	{
 		SetBackgroundColor();
-
-		if (insertedItem == null)
-		{
-			insertedItem = GetComponentInChildren<SlotItem>();
-		}
 	}
 }

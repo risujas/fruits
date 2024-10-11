@@ -196,22 +196,20 @@ public class GameBoard : MonoBehaviour
 
 	private void MakeItemsFall()
 	{
-		// TODO
+		for (int y = size.y - 1; y > 0; y--)
+		{
+			for (int x = 0; x < size.x; x++)
+			{
+				var currentSlot = slots[x, y];
+				var belowSlot = slots[x, y - 1];
+				var currentItem = currentSlot.GetItem();
 
-		// for (int y = size.y - 1; y > 0; y--)
-		// {
-		// 	for (int x = 0; x < size.x; x++)
-		// 	{
-		// 		var currentSlot = slots[x, y];
-		// 		var belowSlot = slots[x, y - 1];
-		// 		var currentItem = currentSlot.GetItem();
-
-		// 		if (belowSlot.GetItem() == null && currentItem != null)
-		// 		{
-		// 			belowSlot.InsertItem(currentItem, false);
-		// 		}
-		// 	}
-		// }
+				if (belowSlot.GetItem() == null && currentItem != null)
+				{
+					belowSlot.InsertItem(currentItem, false, true);
+				}
+			}
+		}
 	}
 
 	private void SpawnAdditionalItems()
