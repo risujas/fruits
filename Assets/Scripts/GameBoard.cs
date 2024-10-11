@@ -214,7 +214,18 @@ public class GameBoard : MonoBehaviour
 
 	private void SpawnAdditionalItems()
 	{
-		// TODO
+		GameBoardCreator creator = GetComponentInParent<GameBoardCreator>();
+
+		for (int x = 0; x < size.x; x++)
+		{
+			var slot = slots[x, size.y - 1];
+			if (slot.GetItem() == null)
+			{
+				var randomItem = creator.CulledSelectedItems[Random.Range(0, creator.CulledSelectedItems.Count)];
+				var newItem = Instantiate(randomItem, slot.transform.position + Vector3.up, Quaternion.identity);
+				slot.InsertItem(newItem, false, true);
+			}
+		}
 	}
 
 	private bool BoardHasEmptySlots()
