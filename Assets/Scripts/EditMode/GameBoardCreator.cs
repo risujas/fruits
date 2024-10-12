@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 using UnityEngine;
 
@@ -32,18 +35,16 @@ public class GameBoardCreator : MonoBehaviour
 		}
 	}
 
+#if UNITY_EDITOR
+
 	public void CreateBoard()
 	{
-		if (Application.isPlaying)
-		{
-			return;
-		}
-
 		if (gameBoardInstance != null)
 		{
 			DestroyImmediate(gameBoardInstance.gameObject);
 			gameBoardInstance = null;
 		}
+
 
 		gameBoardInstance = PrefabUtility.InstantiatePrefab(boardPrefab) as GameBoard;
 		gameBoardInstance.transform.parent = transform;
@@ -55,7 +56,7 @@ public class GameBoardCreator : MonoBehaviour
 	{
 		transform.position = Vector3.zero;
 
-		if (Application.isPlaying || slotPrefab == null)
+		if (slotPrefab == null)
 		{
 			return;
 		}
@@ -66,21 +67,18 @@ public class GameBoardCreator : MonoBehaviour
 		{
 			for (int y = 0; y < boardSize.y; y++)
 			{
+
 				var newSlot = PrefabUtility.InstantiatePrefab(slotPrefab, gameBoardInstance.transform) as Slot;
 				newSlot.transform.position = new Vector3(x, y);
 				newSlot.name = "Slot_X" + x + "_Y" + y;
 				newSlot.SetPosition(x, y);
+
 			}
 		}
 	}
 
 	public void SetOffset()
 	{
-		if (Application.isPlaying)
-		{
-			return;
-		}
-
 		float slotWidth = 0.5f;
 		gameBoardInstance.transform.position -= transform.right * ((boardSize.x / 2.0f) - slotWidth);
 		gameBoardInstance.transform.position -= transform.up * ((boardSize.y / 2.0f) - slotWidth);
@@ -88,7 +86,7 @@ public class GameBoardCreator : MonoBehaviour
 
 	public void FillWithRandomItems()
 	{
-		if (Application.isPlaying || CulledSelectedItems.Count == 0)
+		if (CulledSelectedItems.Count == 0)
 		{
 			return;
 		}
@@ -105,11 +103,6 @@ public class GameBoardCreator : MonoBehaviour
 
 	public void DestroySlots()
 	{
-		if (Application.isPlaying)
-		{
-			return;
-		}
-
 		var slots = gameBoardInstance.GetComponentsInChildren<Slot>();
 		if (slots != null)
 		{
@@ -122,24 +115,17 @@ public class GameBoardCreator : MonoBehaviour
 
 	public void SetCameraSize()
 	{
-		if (Application.isPlaying)
-		{
-			return;
-		}
-
 		Camera.main.orthographicSize = (boardSize.y / 2.0f) + cameraMargin;
 	}
 
 	private void Update()
 	{
-		if (Application.isPlaying)
-		{
-			return;
-		}
-
 		if (gameBoardInstance == null)
 		{
 			gameBoardInstance = GetComponentInChildren<GameBoard>();
 		}
 	}
+
+#endif
+
 }

@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -26,17 +28,14 @@ public class SlotItemPlacement : MonoBehaviour
 
 	private void Update()
 	{
-		if (Application.isPlaying)
-		{
-			return;
-		}
-
-		if (UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage())
+		if (UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() != null)
 		{
 			return;
 		}
 
 		FindSlot();
 		MatchSlotPosition();
+
 	}
 }
+#endif
