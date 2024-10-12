@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Animations;
 using UnityEngine;
 
 
@@ -6,7 +7,9 @@ public class SlotItem : MonoBehaviour
 {
 	[SerializeField] private Color color = Color.white;
 	[SerializeField] private string typeID;
+	[SerializeField] private int selectionAnimationIndex;
 
+	private Animator animator;
 	private Coroutine movementCoroutine;
 
 	public bool IsPartOfSet { get; set; } = false;
@@ -18,6 +21,23 @@ public class SlotItem : MonoBehaviour
 	public bool IsMoving 
 	{
 		get; private set;
+	}
+
+	public void PlaySelectionAnimation(bool play)
+	{
+		if (animator == null)
+		{
+			return;
+		}
+		if (play)
+		{
+			animator.SetBool("PlaySelectionAnimation", true);
+			animator.SetInteger("SelectionAnimationIndex", selectionAnimationIndex);
+		}
+		else
+		{
+			animator.SetBool("PlaySelectionAnimation", false);
+		}
 	}
 
 	public void MoveToPosition(Vector3 targetPosition, float duration)
@@ -47,4 +67,9 @@ public class SlotItem : MonoBehaviour
         transform.position = targetPosition;
 		IsMoving = false;
     }
+
+	private void Awake()
+	{
+		animator = GetComponent<Animator>();
+	}
 }

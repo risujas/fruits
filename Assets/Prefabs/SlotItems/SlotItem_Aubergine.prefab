@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: color.r
       value: 0.616356
       objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: selectionClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 1d7dfffdbe5d6174984f91a9ac6b4006, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

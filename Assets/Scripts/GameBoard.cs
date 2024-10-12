@@ -161,6 +161,7 @@ public class GameBoard : MonoBehaviour
 			{
 				firstSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 				firstSelectedSlot.ApplyBorderHighlight();
+				firstSelectedSlot.GetItem().PlaySelectionAnimation(true);
 			}
 			else
 			{
