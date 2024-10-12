@@ -95,7 +95,7 @@ public class GameBoardCreator : MonoBehaviour
 		foreach (var slot in slots)
 		{
 			var randomItem = CulledSelectedItems[Random.Range(0, CulledSelectedItems.Count)];
-			var newItem = Instantiate(randomItem);
+			var newItem = PrefabUtility.InstantiatePrefab(randomItem) as SlotItem;
 			newItem.GetComponent<SlotItemPlacement>().enabled = false;
 			slot.InsertItem(newItem, true, false);
 		}
