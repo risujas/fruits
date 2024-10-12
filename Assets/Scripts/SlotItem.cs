@@ -25,6 +25,7 @@ public class SlotItem : MonoBehaviour
 
 	public void PlaySelectionAnimation(bool play)
 	{
+		// TODO
 		if (animator == null)
 		{
 			return;
