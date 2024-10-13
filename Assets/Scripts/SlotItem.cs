@@ -6,7 +6,6 @@ public class SlotItem : MonoBehaviour
 {
 	[SerializeField] private Color color = Color.white;
 	[SerializeField] private string typeID;
-	[SerializeField] private AnimationClip selectionAnimation;
 
 	private Animator animator;
 	private Coroutine movementCoroutine;
@@ -28,14 +27,8 @@ public class SlotItem : MonoBehaviour
 		{
 			return;
 		}
-		if (play)
-		{
-			animator.Play(selectionAnimation.name);
-		}
-		else
-		{
-			animator.Play("Empty");
-		}
+
+		animator.SetBool("PlaySelectionAnimation", play);
 	}
 
 	public void MoveToPosition(Vector3 targetPosition, float duration)
