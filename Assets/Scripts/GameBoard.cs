@@ -167,6 +167,7 @@ public class GameBoard : MonoBehaviour
 			{
 				secondSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 				firstSelectedSlot.RemoveBorderHighlight();
+				firstSelectedSlot.GetItem().PlaySelectionAnimation(false);
 
 				if (IsValidMove())
 				{

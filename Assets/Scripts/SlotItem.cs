@@ -32,6 +32,10 @@ public class SlotItem : MonoBehaviour
 		{
 			animator.Play(selectionAnimation.name);
 		}
+		else
+		{
+			animator.Play("Empty");
+		}
 	}
 
 	public void MoveToPosition(Vector3 targetPosition, float duration)
