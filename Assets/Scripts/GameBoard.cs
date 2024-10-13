@@ -8,6 +8,8 @@ public class GameBoard : MonoBehaviour
 	private Slot[,] slots = null;
 	[SerializeField, HideInInspector] private Vector2Int size;
 
+	private const float itemFadeOutTime = 0.2f;
+
 	public Vector2Int Size
 	{
 		get 
@@ -192,7 +194,8 @@ public class GameBoard : MonoBehaviour
 		{
 			if (slot.GetItem() != null && slot.GetItem().IsPartOfSet)
 			{
-				slot.Empty();
+				slot.GetItem().FadingDestroy(itemFadeOutTime);
+				slot.DetachInsertedItem();
 			}
 		}
 	}

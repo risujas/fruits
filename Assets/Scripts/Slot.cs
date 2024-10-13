@@ -44,7 +44,7 @@ public class Slot : MonoBehaviour
 		{
 			if (destroyExistingItem)
 			{
-				Empty();
+				DestroyInsertedItem();
 			}
 
 			item.transform.parent = transform;
@@ -66,7 +66,7 @@ public class Slot : MonoBehaviour
 		return insertedItem;
 	}
 
-	public void Empty()
+	public void DestroyInsertedItem()
 	{
 		if (insertedItem != null)
 		{
@@ -78,6 +78,14 @@ public class Slot : MonoBehaviour
 			{
 				DestroyImmediate(insertedItem.gameObject);
 			}
+		}
+	}
+
+	public void DetachInsertedItem()
+	{
+		if (insertedItem != null)
+		{
+			insertedItem.transform.parent = null;
 		}
 	}
 

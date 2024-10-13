@@ -41,6 +41,31 @@ public class SlotItem : MonoBehaviour
 		movementCoroutine = StartCoroutine(MovementCoroutine(targetPosition, duration));
 	}
 
+	public void FadingDestroy(float duration)
+	{
+		StartCoroutine(FadingDestroyCoroutine(duration));
+	}
+
+	private IEnumerator FadingDestroyCoroutine(float duration)
+	{
+		SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+		Color startColor = spriteRenderer.color;
+		Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
+
+		float elapsedTime = 0f;
+
+		while (elapsedTime < duration)
+		{
+			spriteRenderer.color = Color.Lerp(startColor, endColor, elapsedTime / duration);
+			elapsedTime += Time.deltaTime;
+
+			yield return null;
+		}
+
+		spriteRenderer.color = endColor;
+		Destroy(gameObject);
+	}
+
 	private IEnumerator MovementCoroutine(Vector3 targetPosition, float duration)
     {
         Vector3 startPosition = transform.position;
