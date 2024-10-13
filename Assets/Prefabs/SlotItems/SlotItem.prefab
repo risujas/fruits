@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
   typeID: 
+  selectionAnimation: {fileID: 7400000, guid: ecdbc87910f1d18488350721671ed768, type: 2}
 --- !u!114 &-7843037056545808842
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1799897436052672699, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_Name
-      value: SlotItem_Blocker Variant
+      value: SlotItem_Blocker
       objectReference: {fileID: 0}
     - target: {fileID: 1979567594475897318, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalPosition.x
@@ -63,6 +63,10 @@ PrefabInstance:
     - target: {fileID: 1979567594475897318, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: typeID
+      value: Blocker
       objectReference: {fileID: 0}
     - target: {fileID: 8634517109980129010, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalScale.x

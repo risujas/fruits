@@ -76,10 +76,6 @@ PrefabInstance:
       propertyPath: color.r
       value: 0.29019612
       objectReference: {fileID: 0}
-    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
-      propertyPath: selectionAnimation
-      value: 
-      objectReference: {fileID: 7400000, guid: 1d7dfffdbe5d6174984f91a9ac6b4006, type: 2}
     - target: {fileID: 8634517109980129010, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.8

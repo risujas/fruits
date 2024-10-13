@@ -2,12 +2,11 @@ using System.Collections;
 using UnityEditor.Animations;
 using UnityEngine;
 
-
 public class SlotItem : MonoBehaviour
 {
 	[SerializeField] private Color color = Color.white;
 	[SerializeField] private string typeID;
-	[SerializeField] private int selectionAnimationIndex;
+	[SerializeField] private AnimationClip selectionAnimation;
 
 	private Animator animator;
 	private Coroutine movementCoroutine;
@@ -25,19 +24,13 @@ public class SlotItem : MonoBehaviour
 
 	public void PlaySelectionAnimation(bool play)
 	{
-		// TODO
 		if (animator == null)
 		{
 			return;
 		}
 		if (play)
 		{
-			animator.SetBool("PlaySelectionAnimation", true);
-			animator.SetInteger("SelectionAnimationIndex", selectionAnimationIndex);
-		}
-		else
-		{
-			animator.SetBool("PlaySelectionAnimation", false);
+			animator.Play(selectionAnimation.name);
 		}
 	}
 
