@@ -220,6 +220,7 @@ public class GameBoard : MonoBehaviour
 	private void SpawnAdditionalItems()
 	{
 		// TODO Algorithmically spawn items to ensure that valid combinations exist
+		// TODO have a predetermined spawn seed for each level / board
 
 		for (int x = 0; x < size.x; x++)
 		{
