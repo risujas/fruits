@@ -24,3 +24,5 @@ Add squeaky audio effects when selecting an item
 Add splatter audio effects and fruit splatter VFX when items are destroyed
 
 prevent selection when clicking outside of the game board
+
+occasionally make the eyes of the fruit blink with sprite animation
