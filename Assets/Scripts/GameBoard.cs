@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameBoard : MonoBehaviour
@@ -7,6 +8,13 @@ public class GameBoard : MonoBehaviour
 	private Slot secondSelectedSlot;
 	private Slot[,] slots = null;
 	[SerializeField, HideInInspector] private Vector2Int size;
+
+	private AudioSource audioSource;
+	[SerializeField] private AudioClip selectionSound;
+	[SerializeField] private AudioClip deselectionSound;
+	[SerializeField] private AudioClip setCompletionSoundRegular;
+	[SerializeField] private AudioClip setCompletionSoundSuper;
+	[SerializeField] private List<AudioClip> spawnSounds;
 
 	private const float itemFadeOutTime = 0.2f;
 
@@ -164,12 +172,14 @@ public class GameBoard : MonoBehaviour
 				firstSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 				firstSelectedSlot.ApplyBorderHighlight();
 				firstSelectedSlot.GetItem().PlaySelectionAnimation(true);
+				PlaySelectionSound();
 			}
 			else
 			{
 				secondSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 				firstSelectedSlot.RemoveBorderHighlight();
 				firstSelectedSlot.GetItem().PlaySelectionAnimation(false);
+				PlayDeselectionSound();
 
 				if (IsValidMove())
 				{
@@ -190,13 +200,25 @@ public class GameBoard : MonoBehaviour
 
 	private void DestroyItems()
 	{
+		int numDestroyed = 0;
+
 		foreach (var slot in slots)
 		{
 			if (slot.GetItem() != null && slot.GetItem().IsPartOfSet)
 			{
 				slot.GetItem().FadingDestroy(itemFadeOutTime);
 				slot.DetachInsertedItem();
+				numDestroyed++;
 			}
+		}
+
+		if (numDestroyed >= 4)
+		{
+			PlaySuperSetSound();
+		}
+		else if (numDestroyed >= 3)
+		{
+			PlayRegularSetSound();
 		}
 	}
 
@@ -230,6 +252,8 @@ public class GameBoard : MonoBehaviour
 		// TODO Algorithmically spawn items to ensure that valid combinations exist
 		// TODO have a predetermined spawn seed for each level / board
 
+		bool spawnedItems = false;
+
 		for (int x = 0; x < size.x; x++)
 		{
 			var slot = slots[x, size.y - 1];
@@ -238,7 +262,13 @@ public class GameBoard : MonoBehaviour
 				var randomItem = gameBoardCreator.CulledSelectedItems[Random.Range(0, gameBoardCreator.CulledSelectedItems.Count)];
 				var newItem = Instantiate(randomItem, slot.transform.position + Vector3.up, Quaternion.identity);
 				slot.InsertItem(newItem, false, true);
+				spawnedItems = true;
 			}
+		}
+
+		if (spawnedItems)
+		{
+			PlaySpawnSound();
 		}
 	}
 
@@ -271,6 +301,62 @@ public class GameBoard : MonoBehaviour
 			}
 		}
 		return false;
+	}
+
+	private void PlaySelectionSound()
+	{
+		if (audioSource == null || selectionSound == null)
+		{
+			return;
+		}
+
+		audioSource.PlayOneShot(selectionSound, 0.25f);
+	}
+
+	private void PlayDeselectionSound()
+	{
+		if (audioSource == null || selectionSound == null)
+		{
+			return;
+		}
+
+		audioSource.PlayOneShot(deselectionSound, 0.25f);
+	}
+
+	private void PlayRegularSetSound()
+	{
+		if (audioSource == null || selectionSound == null)
+		{
+			return;
+		}
+
+		audioSource.PlayOneShot(setCompletionSoundRegular, 0.25f);
+	}
+
+	private void PlaySuperSetSound()
+	{
+		if (audioSource == null || selectionSound == null)
+		{
+			return;
+		}
+
+		audioSource.PlayOneShot(setCompletionSoundSuper, 0.25f);
+	}
+
+	private void PlaySpawnSound()
+	{
+		if (audioSource == null || spawnSounds == null || spawnSounds.Count == 0)
+		{
+			return;
+		}
+
+		var randomSound = spawnSounds[Random.Range(0, spawnSounds.Count)];
+		audioSource.PlayOneShot(randomSound, 0.25f);
+	}
+
+	private void Awake()
+	{
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	private void Start()
