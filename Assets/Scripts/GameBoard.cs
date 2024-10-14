@@ -200,9 +200,11 @@ public class GameBoard : MonoBehaviour
 		}
 	}
 
-	private void MakeItemsFall()
+	private bool MakeItemsFall()
 	{
 		// TODO, after implementing blocker tiles, make sure items can fall diagonally
+
+		bool hasFallingItems = false;
 
 		for (int y = size.y - 1; y > 0; y--)
 		{
@@ -215,9 +217,12 @@ public class GameBoard : MonoBehaviour
 				if (belowSlot.GetItem() == null && currentItem != null)
 				{
 					belowSlot.InsertItem(currentItem, false, true);
+					hasFallingItems = true;
 				}
 			}
 		}
+
+		return hasFallingItems;
 	}
 
 	private void SpawnAdditionalItems()
@@ -299,8 +304,12 @@ public class GameBoard : MonoBehaviour
 		if (hasEmptySlots)
 		{
 			Debug.Log("Board has empty slots waiting to be filled");
-			MakeItemsFall();
-			SpawnAdditionalItems();
+			
+			bool hasFallingItems = MakeItemsFall();
+			if (!hasFallingItems)
+			{
+				SpawnAdditionalItems();
+			}
 		}
 		
 		if (!hasCompletedSets && !hasEmptySlots)

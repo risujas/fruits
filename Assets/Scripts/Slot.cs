@@ -18,6 +18,8 @@ public class Slot : MonoBehaviour
 	private Color targetBackgroundColor;
 	private const float colorLerpSpeed = 5.0f;
 
+	private const float itemFallDurationPerUnit = 0.075f;
+
 	public static Slot FindNearestSlot(Vector3 point)
 	{
 		Slot nearest = null;
@@ -52,7 +54,8 @@ public class Slot : MonoBehaviour
 
 			if (useSlowTransition)
 			{
-				item.MoveToPosition(transform.position, 0.2f);
+				float distance = Vector3.Distance(transform.position, item.transform.position);
+				item.MoveToPosition(transform.position, itemFallDurationPerUnit * distance);
 			}
 			else
 			{
