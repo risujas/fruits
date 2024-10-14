@@ -22,3 +22,5 @@ Add visual effects to combos
 Add squeaky audio effects when selecting an item
 
 Add splatter audio effects and fruit splatter VFX when items are destroyed
+
+prevent selection when clicking outside of the game board
