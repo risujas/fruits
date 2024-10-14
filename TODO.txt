@@ -1,0 +1,24 @@
+Implement slowmo with Time.timescale when getting big combos, lerp the speed back up
+
+Implement menu scenes:
+	Main menu
+	Settings
+	In-game settings
+	Level selector
+	Achievements
+	
+Add a goal to every level like "destroy all eggplants"
+
+Every level will have a move limit
+
+Add blockers that items will fall around
+
+Add an in-game store that sells boost items
+	Additional moves
+	Destroy any item on the map
+
+Add visual effects to combos
+
+Add squeaky audio effects when selecting an item
+
+Add splatter audio effects and fruit splatter VFX when items are destroyed
