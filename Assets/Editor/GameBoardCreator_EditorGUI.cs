@@ -14,9 +14,6 @@ public class GameBoardCreator_EditorGUI : Editor
         if (GUILayout.Button("Create Board Instance"))
         {
             gameBoardCreator.CreateBoard();
-            gameBoardCreator.CreateSlots();
-            gameBoardCreator.SetOffset();
-            gameBoardCreator.SetCameraSize();
         }
     }
 
