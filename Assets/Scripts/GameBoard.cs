@@ -165,15 +165,20 @@ public class GameBoard : MonoBehaviour
 
 	private void HandleInput()
 	{
+		foreach (var s in slots)
+		{
+			s.GetItem().PlayHoverAnimation(false);
+		}
+
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+		if (!hit || hit.collider.gameObject != gameObject)
+		{
+			return;
+		}
+
 		if (Input.GetMouseButtonUp(0))
 		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-			if (!hit || hit.collider.gameObject != gameObject)
-			{
-				return;
-			}
-
 			if (firstSelectedSlot == null)
 			{
 				firstSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
@@ -202,6 +207,11 @@ public class GameBoard : MonoBehaviour
 				firstSelectedSlot = null;
 				secondSelectedSlot = null;
 			}
+		}
+		else
+		{
+			var nearestSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+			nearestSlot.GetItem().PlayHoverAnimation(true);
 		}
 	}
 

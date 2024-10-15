@@ -30,6 +30,16 @@ public class SlotItem : MonoBehaviour
 		animator.SetBool("PlaySelectionAnimation", play);
 	}
 
+	public void PlayHoverAnimation(bool play)
+	{
+		if (animator == null)
+		{
+			return;
+		}
+
+		animator.SetBool("PlayHoverAnimation", play);
+	}
+
 	public void MoveToPosition(Vector3 targetPosition, float duration)
 	{
 		if (movementCoroutine != null)
