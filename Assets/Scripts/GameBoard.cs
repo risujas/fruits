@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ public class GameBoard : MonoBehaviour
 	[SerializeField] private AudioClip setCompletionSoundSuper;
 	[SerializeField] private List<AudioClip> spawnSounds;
 
+	private bool userTookAction = false;
+
 	private const float itemFadeOutTime = 0.2f;
 
 	public Vector2Int Size
@@ -28,6 +31,27 @@ public class GameBoard : MonoBehaviour
 		{
 			size = value;
 		}
+	}
+
+	private void TriggerSlowmo()
+	{
+		StartCoroutine(LerpSlowmo(0.0f, 1.0f, 1.0f));
+		Debug.Log("Slowmo triggered!");
+	}
+
+	private IEnumerator LerpSlowmo(float startValue, float targetValue, float duration)
+	{
+		float t = 0.0f;
+		while (t < duration)
+		{
+			Time.timeScale = Mathf.Lerp(startValue, targetValue, t / duration);
+			t += Time.unscaledDeltaTime;
+			Debug.Log("Timescale: " + Time.timeScale);
+
+			yield return null;
+		}
+
+		Time.timeScale = targetValue;
 	}
 
 	private bool IsValidMove()
@@ -179,6 +203,8 @@ public class GameBoard : MonoBehaviour
 
 		if (Input.GetMouseButtonUp(0))
 		{
+			userTookAction = true;
+
 			if (firstSelectedSlot == null)
 			{
 				firstSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
@@ -229,13 +255,20 @@ public class GameBoard : MonoBehaviour
 			}
 		}
 
-		if (numDestroyed >= 4)
+		if (numDestroyed >= 3)
 		{
-			PlaySuperSetSound();
-		}
-		else if (numDestroyed >= 3)
-		{
-			PlayRegularSetSound();
+			if (numDestroyed >= 4)
+			{
+				PlaySuperSetSound();
+			}
+			else
+			{
+				PlayRegularSetSound();
+			}
+			if (!userTookAction)
+			{
+				TriggerSlowmo();
+			}
 		}
 	}
 
@@ -414,7 +447,8 @@ public class GameBoard : MonoBehaviour
 				SpawnAdditionalItems();
 			}
 		}
-		
+
+		userTookAction = false;
 		if (!hasCompletedSets && !hasEmptySlots)
 		{
 			HandleInput();
