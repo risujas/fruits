@@ -11,14 +11,15 @@ public class Slot : MonoBehaviour
 	[SerializeField, ReadOnly] private Vector2Int gridPosition;
 	private bool positionWasSet = false;
 
-	public Vector2Int GridPosition => gridPosition;
-
-	public SlotItem insertedItem => GetComponentInChildren<SlotItem>();
-
 	private Color targetBackgroundColor;
+
 	private const float colorLerpSpeed = 5.0f;
 
 	private const float itemFallDurationPerUnit = 0.075f;
+
+	public Vector2Int GridPosition => gridPosition;
+
+	public SlotItem insertedItem => GetComponentInChildren<SlotItem>();
 
 	public static Slot FindNearestSlot(Vector3 point)
 	{

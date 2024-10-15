@@ -5,6 +5,7 @@ public class SlotItem : MonoBehaviour
 {
 	[SerializeField] private Color color = Color.white;
 	[SerializeField] private string typeID;
+	[SerializeField] private ParticleSystem destructionParticles;
 
 	private Animator animator;
 	private Coroutine movementCoroutine;
@@ -18,6 +19,11 @@ public class SlotItem : MonoBehaviour
 	public bool IsMoving 
 	{
 		get; private set;
+	}
+
+	public void TriggerDestructionEffect()
+	{
+		destructionParticles.Play();
 	}
 
 	public void PlaySelectionAnimation(bool play)

@@ -26,3 +26,12 @@ Add splatter audio effects and fruit splatter VFX when items are destroyed
 prevent selection when clicking outside of the game board
 
 occasionally make the eyes of the fruit blink with sprite animation
+
+add a juice glass mechanic related to the level goal:
+when sets are collected, the fruits get juiced and poured into a glass
+the juice has a colour that depends on the average fruit mixture
+when a level goal is reached, the glass is emptied and "drunk"
+your number of moves is tied to the fill level of the glass, going over the limit means
+	that the liquid goes over the glass edge
+
+instead of playing super set sounds for big combos, play them for combos that happen without player input

@@ -45,6 +45,9 @@ TagManager:
   - name: Slots
     uniqueID: 2475326863
     locked: 0
+  - name: Destruction Effects
+    uniqueID: 2885477315
+    locked: 0
   - name: SlotItems
     uniqueID: 3239455473
     locked: 0
