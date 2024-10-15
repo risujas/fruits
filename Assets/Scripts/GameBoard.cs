@@ -257,17 +257,15 @@ public class GameBoard : MonoBehaviour
 
 		if (numDestroyed >= 3)
 		{
-			if (numDestroyed >= 4)
+
+			if (!userTookAction)
 			{
-				PlaySuperSetSound();
+				PlayExtraSetSound();
+				TriggerSlowmo();
 			}
 			else
 			{
 				PlayRegularSetSound();
-			}
-			if (!userTookAction)
-			{
-				TriggerSlowmo();
 			}
 		}
 	}
@@ -383,7 +381,7 @@ public class GameBoard : MonoBehaviour
 		audioSource.PlayOneShot(setCompletionSoundRegular, 0.25f);
 	}
 
-	private void PlaySuperSetSound()
+	private void PlayExtraSetSound()
 	{
 		if (audioSource == null || selectionSound == null)
 		{
