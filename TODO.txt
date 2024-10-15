@@ -1,5 +1,3 @@
-Implement slowmo with Time.timescale when getting big combos, lerp the speed back up
-
 Implement menu scenes:
 	Main menu
 	Settings
@@ -7,7 +5,10 @@ Implement menu scenes:
 	Level selector
 	Achievements
 	
-Add a goal to every level like "destroy all eggplants"
+Add a goal to every level like
+"add 5 oranges and 20 strawberries to the juice glass"
+or lose conditions like
+"do not add more than 5 eggplants to the juice glass"
 
 Every level will have a move limit
 
@@ -23,8 +24,6 @@ Add squeaky audio effects when selecting an item
 
 Add splatter audio effects and fruit splatter VFX when items are destroyed
 
-prevent selection when clicking outside of the game board
-
 occasionally make the eyes of the fruit blink with sprite animation
 
 add a juice glass mechanic related to the level goal:
@@ -33,5 +32,3 @@ the juice has a colour that depends on the average fruit mixture
 when a level goal is reached, the glass is emptied and "drunk"
 your number of moves is tied to the fill level of the glass, going over the limit means
 	that the liquid goes over the glass edge
-
-instead of playing super set sounds for big combos, play them for combos that happen without player input
