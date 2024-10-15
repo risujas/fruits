@@ -46,7 +46,6 @@ public class GameBoard : MonoBehaviour
 		{
 			Time.timeScale = Mathf.Lerp(startValue, targetValue, t / duration);
 			t += Time.unscaledDeltaTime;
-			Debug.Log("Timescale: " + Time.timeScale);
 
 			yield return null;
 		}
