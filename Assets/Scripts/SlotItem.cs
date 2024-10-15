@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class SlotItem : MonoBehaviour
 {
-	[SerializeField] private Color primaryColor = Color.white;
-	[SerializeField] private Color secondaryColor = Color.grey;
+	[SerializeField] private Color backgroundColor = Color.white;
+	[SerializeField] private Color firstDestructionColor = Color.grey;
+	[SerializeField] private Color secondDestructionColor = Color.grey;
 
 	[SerializeField] private string typeID;
 	[SerializeField] private ParticleSystem destructionParticles;
@@ -16,8 +17,7 @@ public class SlotItem : MonoBehaviour
 
 	public bool IsPartOfSet { get; set; } = false;
 
-	public Color PrimaryColor => primaryColor;
-	public Color SecondaryColor => secondaryColor;
+	public Color BackgroundColor => backgroundColor;
 
 	public string TypeID => typeID;
 
@@ -112,7 +112,7 @@ public class SlotItem : MonoBehaviour
 		Gradient gradient1 = new Gradient();
 		gradient1.SetKeys(
 			new GradientColorKey[] {
-			new GradientColorKey(primaryColor * particleColorMultiplier, 0.0f)
+			new GradientColorKey(firstDestructionColor * particleColorMultiplier, 0.0f)
 			},
 			new GradientAlphaKey[] {
 			new GradientAlphaKey(1.0f, 0.0f),
@@ -124,7 +124,7 @@ public class SlotItem : MonoBehaviour
 		Gradient gradient2 = new Gradient();
 		gradient2.SetKeys(
 			new GradientColorKey[] {
-			new GradientColorKey(secondaryColor * particleColorMultiplier, 0.0f)
+			new GradientColorKey(secondDestructionColor * particleColorMultiplier, 0.0f)
 			},
 			new GradientAlphaKey[] {
 			new GradientAlphaKey(1.0f, 0.0f),

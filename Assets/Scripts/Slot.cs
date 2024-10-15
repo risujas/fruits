@@ -95,7 +95,7 @@ public class Slot : MonoBehaviour
 
 	public void SetBackgroundColor()
 	{
-		targetBackgroundColor = insertedItem == null ? backgroundDefaultColor : insertedItem.PrimaryColor;
+		targetBackgroundColor = insertedItem == null ? backgroundDefaultColor : insertedItem.BackgroundColor;
 		background.color = Color.Lerp(background.color, targetBackgroundColor, Time.deltaTime * colorLerpSpeed);
 	}
 
@@ -103,7 +103,7 @@ public class Slot : MonoBehaviour
 	{
 		if (insertedItem != null)
 		{
-			border.color = insertedItem.PrimaryColor * 1.1f;
+			border.color = insertedItem.BackgroundColor * 1.1f;
 		}
 	}
 

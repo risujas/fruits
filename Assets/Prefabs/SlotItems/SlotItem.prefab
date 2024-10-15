@@ -287,7 +287,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -980,7 +980,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 15
+        scalar: 20
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1432,8 +1432,8 @@ ParticleSystem:
     fps: 30
     frameOverTime:
       serializedVersion: 2
-      minMaxState: 1
-      scalar: 0.9999
+      minMaxState: 0
+      scalar: 0
       minScalar: 0.9999
       maxCurve:
         serializedVersion: 2
@@ -1485,8 +1485,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startFrame:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: 0.8888889
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1545,7 +1545,15 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - sprite: {fileID: 4613434862892679850, guid: e1e87d77ea05dff448c13393172799e3, type: 3}
+    - sprite: {fileID: 885278942326852442, guid: e1e87d77ea05dff448c13393172799e3, type: 3}
+    - sprite: {fileID: -5029371349406095063, guid: e1e87d77ea05dff448c13393172799e3, type: 3}
+    - sprite: {fileID: 895374503402197614, guid: e1e87d77ea05dff448c13393172799e3, type: 3}
+    - sprite: {fileID: 5264269799954718887, guid: e1e87d77ea05dff448c13393172799e3, type: 3}
+    - sprite: {fileID: -7574521097376688874, guid: e1e87d77ea05dff448c13393172799e3, type: 3}
+    - sprite: {fileID: -6017169112023963603, guid: e1e87d77ea05dff448c13393172799e3, type: 3}
+    - sprite: {fileID: -7689400141890966725, guid: e1e87d77ea05dff448c13393172799e3, type: 3}
+    - sprite: {fileID: 7874106181040422866, guid: e1e87d77ea05dff448c13393172799e3, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4838,7 +4846,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4939,7 +4947,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cebfdf32d2fc0489cb185b5e225a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 1, a: 1}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  firstDestructionColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  secondDestructionColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   typeID: 
   destructionParticles: {fileID: 1594568114893038494}
 --- !u!114 &-7843037056545808842
