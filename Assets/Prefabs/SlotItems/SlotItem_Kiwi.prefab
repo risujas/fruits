@@ -92,6 +92,30 @@ PrefabInstance:
       propertyPath: color.r
       value: 0.6235379
       objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.b
+      value: 0.24319999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.g
+      value: 0.48172307
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.r
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.b
+      value: 0.2713154
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.g
+      value: 0.8584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.r
+      value: 0.5678853
+      objectReference: {fileID: 0}
     - target: {fileID: 8634517109980129010, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

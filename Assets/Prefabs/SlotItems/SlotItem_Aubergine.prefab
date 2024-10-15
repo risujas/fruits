@@ -96,6 +96,30 @@ PrefabInstance:
       propertyPath: selectionClip
       value: 
       objectReference: {fileID: 7400000, guid: 1d7dfffdbe5d6174984f91a9ac6b4006, type: 2}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.b
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.g
+      value: 0.40334642
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.r
+      value: 0.66914546
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.b
+      value: 0.4039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.g
+      value: 0.83137256
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.r
+      value: 0.8207851
+      objectReference: {fileID: 0}
     - target: {fileID: 8634517109980129010, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1

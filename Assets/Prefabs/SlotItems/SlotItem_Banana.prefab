@@ -92,6 +92,30 @@ PrefabInstance:
       propertyPath: color.r
       value: 0.8392157
       objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.b
+      value: 0.31287822
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.g
+      value: 0.7611017
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.r
+      value: 0.8396226
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.b
+      value: 0.6232645
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.g
+      value: 0.8634649
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.r
+      value: 0.8867924
+      objectReference: {fileID: 0}
     - target: {fileID: 8634517109980129010, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1

@@ -93,6 +93,30 @@ PrefabInstance:
       value: 0.829
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.b
+      value: 0.561619
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.g
+      value: 0.4039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: primaryColor.r
+      value: 0.83137256
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.b
+      value: 0.32793695
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.g
+      value: 0.16803133
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondaryColor.r
+      value: 0.6037736
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: selectionAnimation
       value: 
       objectReference: {fileID: 7400000, guid: 00a2c269b4c7f374aae22586759dd820, type: 2}
