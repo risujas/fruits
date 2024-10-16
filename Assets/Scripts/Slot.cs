@@ -19,7 +19,7 @@ public class Slot : MonoBehaviour
 
 	public Vector2Int GridPosition => gridPosition;
 
-	public SlotItem insertedItem => GetComponentInChildren<SlotItem>();
+	public SlotItem InsertedItem => GetComponentInChildren<SlotItem>();
 
 	public static Slot FindNearestSlot(Vector3 point)
 	{
@@ -71,45 +71,40 @@ public class Slot : MonoBehaviour
 		}
 	}
 
-	public SlotItem GetItem()
-	{
-		return insertedItem;
-	}
-
 	public void DestroyInsertedItem()
 	{
-		if (insertedItem != null)
+		if (InsertedItem != null)
 		{
 			if (Application.isPlaying)
 			{
-				Destroy(insertedItem.gameObject);
+				Destroy(InsertedItem.gameObject);
 			}
 			else
 			{
-				DestroyImmediate(insertedItem.gameObject);
+				DestroyImmediate(InsertedItem.gameObject);
 			}
 		}
 	}
 
 	public void DetachInsertedItem()
 	{
-		if (insertedItem != null)
+		if (InsertedItem != null)
 		{
-			insertedItem.transform.parent = null;
+			InsertedItem.transform.parent = null;
 		}
 	}
 
 	public void SetBackgroundColor()
 	{
-		targetBackgroundColor = insertedItem == null ? backgroundDefaultColor : insertedItem.BackgroundColor;
+		targetBackgroundColor = InsertedItem == null ? backgroundDefaultColor : InsertedItem.BackgroundColor;
 		background.color = Color.Lerp(background.color, targetBackgroundColor, Time.deltaTime * colorLerpSpeed);
 	}
 
 	public void ApplyBorderHighlight()
 	{
-		if (insertedItem != null)
+		if (InsertedItem != null)
 		{
-			border.color = insertedItem.BackgroundColor * 1.1f;
+			border.color = InsertedItem.BackgroundColor * 1.1f;
 		}
 	}
 

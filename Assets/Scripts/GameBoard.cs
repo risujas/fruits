@@ -83,7 +83,7 @@ public class GameBoard : MonoBehaviour
 			return false;
 		}
 
-		if (firstSelectedSlot.GetItem().TypeID == secondSelectedSlot.GetItem().TypeID)
+		if (firstSelectedSlot.InsertedItem.TypeID == secondSelectedSlot.InsertedItem.TypeID)
 		{
 			return false;
 		}
@@ -93,8 +93,8 @@ public class GameBoard : MonoBehaviour
 
 	private void SwapItems(Slot firstSlot, Slot secondSlot)
 	{
-		SlotItem item1 = firstSlot.GetItem();
-		SlotItem item2 = secondSlot.GetItem();
+		SlotItem item1 = firstSlot.InsertedItem;
+		SlotItem item2 = secondSlot.InsertedItem;
 
 		firstSlot.InsertItem(item2, false, true);
 		secondSlot.InsertItem(item1, false, true);
@@ -130,7 +130,7 @@ public class GameBoard : MonoBehaviour
 
 			for (int j = 0; j < (horizontal ? size.x : size.y); j++)
 			{
-				var item = horizontal ? slots[j, i].GetItem() : slots[i, j].GetItem();
+				var item = horizontal ? slots[j, i].InsertedItem : slots[i, j].InsertedItem;
 
 				if (item == null)
 				{
@@ -151,15 +151,15 @@ public class GameBoard : MonoBehaviour
 							{
 								if (horizontal)
 								{
-									slots[j - 2, i].GetItem().IsPartOfSet = true;
-									slots[j - 1, i].GetItem().IsPartOfSet = true;
-									slots[j, i].GetItem().IsPartOfSet = true;
+									slots[j - 2, i].InsertedItem.IsPartOfSet = true;
+									slots[j - 1, i].InsertedItem.IsPartOfSet = true;
+									slots[j, i].InsertedItem.IsPartOfSet = true;
 								}
 								else
 								{
-									slots[i, j - 2].GetItem().IsPartOfSet = true;
-									slots[i, j - 1].GetItem().IsPartOfSet = true;
-									slots[i, j].GetItem().IsPartOfSet = true;
+									slots[i, j - 2].InsertedItem.IsPartOfSet = true;
+									slots[i, j - 1].InsertedItem.IsPartOfSet = true;
+									slots[i, j].InsertedItem.IsPartOfSet = true;
 								}
 								foundSets = true;
 							}
@@ -191,7 +191,7 @@ public class GameBoard : MonoBehaviour
 	{
 		foreach (var s in slots)
 		{
-			s.GetItem().PlayHoverAnimation(false);
+			s.InsertedItem.PlayHoverAnimation(false);
 		}
 
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -209,14 +209,14 @@ public class GameBoard : MonoBehaviour
 			{
 				firstSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 				firstSelectedSlot.ApplyBorderHighlight();
-				firstSelectedSlot.GetItem().PlaySelectionAnimation(true);
+				firstSelectedSlot.InsertedItem.PlaySelectionAnimation(true);
 				PlaySelectionSound();
 			}
 			else
 			{
 				secondSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 				firstSelectedSlot.RemoveBorderHighlight();
-				firstSelectedSlot.GetItem().PlaySelectionAnimation(false);
+				firstSelectedSlot.InsertedItem.PlaySelectionAnimation(false);
 				PlayDeselectionSound();
 
 				if (IsValidMove())
@@ -237,7 +237,7 @@ public class GameBoard : MonoBehaviour
 		else
 		{
 			var nearestSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-			nearestSlot.GetItem().PlayHoverAnimation(true);
+			nearestSlot.InsertedItem.PlayHoverAnimation(true);
 		}
 	}
 
@@ -247,10 +247,10 @@ public class GameBoard : MonoBehaviour
 
 		foreach (var slot in slots)
 		{
-			if (slot.GetItem() != null && slot.GetItem().IsPartOfSet)
+			if (slot.InsertedItem != null && slot.InsertedItem.IsPartOfSet)
 			{
-				slot.GetItem().FadingDestroy(itemFadeOutTime);
-				slot.GetItem().GetComponentInChildren<DestructionEffect>()?.Trigger();
+				slot.InsertedItem.FadingDestroy(itemFadeOutTime);
+				slot.InsertedItem.GetComponentInChildren<DestructionEffect>()?.Trigger();
 				slot.DetachInsertedItem();
 				numDestroyed++;
 			}
@@ -283,9 +283,9 @@ public class GameBoard : MonoBehaviour
 			{
 				var currentSlot = slots[x, y];
 				var belowSlot = slots[x, y - 1];
-				var currentItem = currentSlot.GetItem();
+				var currentItem = currentSlot.InsertedItem;
 
-				if (belowSlot.GetItem() == null && currentItem != null)
+				if (belowSlot.InsertedItem == null && currentItem != null)
 				{
 					belowSlot.InsertItem(currentItem, false, true);
 					hasFallingItems = true;
@@ -306,7 +306,7 @@ public class GameBoard : MonoBehaviour
 		for (int x = 0; x < size.x; x++)
 		{
 			var slot = slots[x, size.y - 1];
-			if (slot.GetItem() == null)
+			if (slot.InsertedItem == null)
 			{
 				var randomItem = gameBoardCreator.CulledSelectedItems[Random.Range(0, gameBoardCreator.CulledSelectedItems.Count)];
 				var newItem = Instantiate(randomItem, slot.transform.position + Vector3.up, Quaternion.identity);
@@ -325,7 +325,7 @@ public class GameBoard : MonoBehaviour
 	{
 		foreach (var s in slots)
 		{
-			if (s.GetItem() == null)
+			if (s.InsertedItem == null)
 			{
 				return true;
 			}
@@ -337,7 +337,7 @@ public class GameBoard : MonoBehaviour
 	{
 		foreach (var s in slots)
 		{
-			var item = s.GetItem();
+			var item = s.InsertedItem;
 
 			if (item == null)
 			{

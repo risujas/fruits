@@ -10,7 +10,7 @@ public class SlotItemPlacement : MonoBehaviour
 	private void FindSlot()
 	{
 		var nearest = Slot.FindNearestSlot(transform.position);
-		if (nearest.GetItem() == null)
+		if (nearest.InsertedItem == null)
 		{
 			slot = nearest;
 			transform.parent = slot.transform;
