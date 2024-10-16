@@ -34,7 +34,6 @@ public class SlotItem : MonoBehaviour
 		animator.SetBool("PlayHoverAnimation", play);
 	}
 
-
 	public void FadingDestroy(float duration)
 	{
 		StartCoroutine(FadingDestroyCoroutine(duration));
