@@ -15,10 +15,10 @@ PrefabInstance:
     - target: {fileID: 944152728362800212, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e37a6d2215949f64e98e177aedfb5585, type: 3}
+      objectReference: {fileID: 21300000, guid: a7be711338eb3e7499d548899b11d1d0, type: 3}
     - target: {fileID: 1799897436052672699, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_Name
-      value: SlotItem_Strawberry
+      value: Fruit_Orange
       objectReference: {fileID: 0}
     - target: {fileID: 1979567594475897318, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalScale.x
@@ -76,93 +76,105 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
-      propertyPath: typeID
-      value: Strawberry
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: firstDestructionColor.b
+      value: 0.10849059
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: firstDestructionColor.g
+      value: 0.62657326
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: firstDestructionColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondDestructionColor.b
+      value: 0.3820755
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondDestructionColor.g
+      value: 0.61751866
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondDestructionColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
-      propertyPath: color.a
-      value: 1
+      propertyPath: typeID
+      value: Orange
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: color.b
-      value: 0.30746555
+      value: 0.29019612
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: color.g
-      value: 0.2891153
+      value: 0.50499654
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: color.r
-      value: 0.8396226
+      value: 0.8392157
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: primaryColor.b
-      value: 0.35628787
+      value: 0.1966002
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: primaryColor.g
-      value: 0.3237362
+      value: 0.51301247
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: primaryColor.r
-      value: 0.9150943
+      value: 0.8867924
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondaryColor.b
-      value: 0.34839404
+      value: 0.15966538
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondaryColor.g
-      value: 0.31585974
+      value: 0.4010584
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondaryColor.r
-      value: 0.735849
+      value: 0.8679245
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: backgroundColor.b
-      value: 0.35686275
+      value: 0.19607845
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: backgroundColor.g
-      value: 0.3254902
+      value: 0.5137255
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: backgroundColor.r
-      value: 0.91372555
+      value: 0.8862746
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
-      propertyPath: selectionAnimation
-      value: 
-      objectReference: {fileID: 7400000, guid: 622843fb7bab4374c8270301a7c7eb40, type: 2}
-    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: firstDestructionColor.b
-      value: 0.34901962
+      value: 0.16078432
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: firstDestructionColor.g
-      value: 0.31764707
+      value: 0.40000004
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: firstDestructionColor.r
-      value: 0.7372549
-      objectReference: {fileID: 0}
-    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
-      propertyPath: selectionAnimationIndex
-      value: 1
+      value: 0.86666673
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondDestructionColor.b
-      value: 0.31931734
+      value: 0.24056602
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondDestructionColor.g
-      value: 0.27803493
+      value: 0.620283
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondDestructionColor.r
-      value: 0.8301887
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8634517109980129010, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalScale.x

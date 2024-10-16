@@ -15,22 +15,22 @@ PrefabInstance:
     - target: {fileID: 944152728362800212, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 67bfdef906b686f46840ccea6e86bb62, type: 3}
+      objectReference: {fileID: 21300000, guid: 7291ba58b9050a04e82bcd48c83fc414, type: 3}
     - target: {fileID: 1799897436052672699, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_Name
-      value: SlotItem_Blueberry
+      value: Fruit_Cherries
       objectReference: {fileID: 0}
     - target: {fileID: 1979567594475897318, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1979567594475897318, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1979567594475897318, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1979567594475897318, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalPosition.x
@@ -76,81 +76,113 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: firstDestructionColor.b
+      value: 0.5074053
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: firstDestructionColor.g
+      value: 0.33285868
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: firstDestructionColor.r
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondDestructionColor.b
+      value: 0.35554484
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondDestructionColor.g
+      value: 0.19579923
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386828308391058372, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: secondDestructionColor.r
+      value: 0.754717
+      objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: typeID
-      value: Blueberry
+      value: Cherries
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: color.b
-      value: 0.8392157
+      value: 0.551264
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: color.g
-      value: 0.40633795
+      value: 0.37031472
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: color.r
-      value: 0.29019612
+      value: 0.829
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: primaryColor.b
-      value: 0.83137256
+      value: 0.561619
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: primaryColor.g
-      value: 0.46456182
+      value: 0.4039216
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: primaryColor.r
-      value: 0.4039216
+      value: 0.83137256
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondaryColor.b
-      value: 0.73291206
+      value: 0.32793695
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondaryColor.g
-      value: 0.8490566
+      value: 0.16803133
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondaryColor.r
-      value: 0.8397354
+      value: 0.6037736
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: backgroundColor.b
-      value: 0.8313726
+      value: 0.56078434
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: backgroundColor.g
-      value: 0.46274513
-      objectReference: {fileID: 0}
-    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
-      propertyPath: backgroundColor.r
       value: 0.4039216
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: backgroundColor.r
+      value: 0.8313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: selectionAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 00a2c269b4c7f374aae22586759dd820, type: 2}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: firstDestructionColor.b
-      value: 0.73333335
+      value: 0.530219
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: firstDestructionColor.g
-      value: 0.85098046
+      value: 0.36004803
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: firstDestructionColor.r
-      value: 0.83921576
+      value: 0.8207547
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
+      propertyPath: selectionAnimationIndex
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondDestructionColor.b
-      value: 0.8490566
+      value: 0.41274586
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondDestructionColor.g
-      value: 0.5727127
+      value: 0.2063729
       objectReference: {fileID: 0}
     - target: {fileID: 7026568206189231501, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: secondDestructionColor.r
-      value: 0.6648274
+      value: 0.761
       objectReference: {fileID: 0}
     - target: {fileID: 8634517109980129010, guid: ab8258d762c43084bb774bed8ff73a86, type: 3}
       propertyPath: m_LocalScale.x

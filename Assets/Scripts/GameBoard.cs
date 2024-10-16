@@ -249,7 +249,7 @@ public class GameBoard : MonoBehaviour
 			if (slot.GetItem() != null && slot.GetItem().IsPartOfSet)
 			{
 				slot.GetItem().FadingDestroy(itemFadeOutTime);
-				slot.GetItem().TriggerDestructionEffect();
+				slot.GetItem().GetComponentInChildren<DestructionEffect>()?.Trigger();
 				slot.DetachInsertedItem();
 				numDestroyed++;
 			}

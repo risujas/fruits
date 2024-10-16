@@ -4,13 +4,7 @@ using UnityEngine;
 public class SlotItem : MonoBehaviour
 {
 	[SerializeField] private Color backgroundColor = Color.white;
-	[SerializeField] private Color firstDestructionColor = Color.grey;
-	[SerializeField] private Color secondDestructionColor = Color.grey;
-
 	[SerializeField] private string typeID;
-	[SerializeField] private ParticleSystem destructionParticles;
-
-	private const float particleColorMultiplier = 1.3f;
 
 	private Animator animator;
 	private Coroutine movementCoroutine;
@@ -24,11 +18,6 @@ public class SlotItem : MonoBehaviour
 	public bool IsMoving 
 	{
 		get; private set;
-	}
-
-	public void TriggerDestructionEffect()
-	{
-		destructionParticles.Play();
 	}
 
 	public void PlaySelectionAnimation(bool play)
@@ -104,48 +93,8 @@ public class SlotItem : MonoBehaviour
 		IsMoving = false;
     }
 
-	private void SetDestructionEffectColour()
-	{
-		var colorOverLifetime = destructionParticles.colorOverLifetime;
-		colorOverLifetime.enabled = true;
-
-		Gradient gradient1 = new Gradient();
-		gradient1.SetKeys(
-			new GradientColorKey[] {
-			new GradientColorKey(firstDestructionColor * particleColorMultiplier, 0.0f)
-			},
-			new GradientAlphaKey[] {
-			new GradientAlphaKey(1.0f, 0.0f),
-			new GradientAlphaKey(1.0f, 0.5f),
-			new GradientAlphaKey(0.0f, 1.0f)
-			}
-		);
-
-		Gradient gradient2 = new Gradient();
-		gradient2.SetKeys(
-			new GradientColorKey[] {
-			new GradientColorKey(secondDestructionColor * particleColorMultiplier, 0.0f)
-			},
-			new GradientAlphaKey[] {
-			new GradientAlphaKey(1.0f, 0.0f),
-			new GradientAlphaKey(1.0f, 0.5f),
-			new GradientAlphaKey(0.0f, 1.0f)
-			}
-		);
-
-		ParticleSystem.MinMaxGradient minMaxGradient = new ParticleSystem.MinMaxGradient(gradient1, gradient2);
-		minMaxGradient.mode = ParticleSystemGradientMode.TwoGradients;
-		colorOverLifetime.color = minMaxGradient;
-	}
-
-
 	private void Awake()
 	{
 		animator = GetComponent<Animator>();
-	}
-
-	private void Start()
-	{
-		SetDestructionEffectColour();
 	}
 }
