@@ -55,8 +55,14 @@ public class Slot : MonoBehaviour
 
 			if (useSlowTransition)
 			{
+				var movable = item.GetComponent<LerpMovable>();
+				if (movable == null)
+				{
+					throw new System.Exception("Slow transition requires the Movable component");
+				}
+
 				float distance = Vector3.Distance(transform.position, item.transform.position);
-				item.MoveToPosition(transform.position, itemFallDurationPerUnit * distance);
+				movable.MoveToPosition(transform.position, itemFallDurationPerUnit * distance);
 			}
 			else
 			{

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameBoard : MonoBehaviour
@@ -332,7 +333,7 @@ public class GameBoard : MonoBehaviour
 		return false;
 	}
 
-	private bool BoardHasMovingItems()
+	private bool BoardHasLerpMovingItems()
 	{
 		foreach (var s in slots)
 		{
@@ -343,11 +344,13 @@ public class GameBoard : MonoBehaviour
 				continue;
 			}
 
-			if (s.GetItem().IsMoving)
+			var lerpMovable = item.GetComponent<LerpMovable>();
+			if (lerpMovable != null && lerpMovable.IsMoving)
 			{
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -422,7 +425,7 @@ public class GameBoard : MonoBehaviour
 
 	private void Update()
 	{
-		if (BoardHasMovingItems())
+		if (BoardHasLerpMovingItems())
 		{
 			return;
 		}
