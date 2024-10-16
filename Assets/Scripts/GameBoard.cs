@@ -288,17 +288,12 @@ public class GameBoard : MonoBehaviour
 				var fallSlot = slots[x + fallSlotOffset.x, y + fallSlotOffset.y];
 				var currentItem = currentSlot.InsertedItem;
 
-				if (currentItem != null && currentItem.name == "StaticBlock") { Debug.Log("a"); }
-
 				if (fallSlot.InsertedItem == null && currentItem != null && currentItem.CanFall)
 				{
 					fallSlot.InsertItem(currentItem, false, true);
 					hasFallingItems = true;
 
-					if (currentItem != null && currentItem.name == "StaticBlock") { Debug.Log("b"); }
 				}
-
-				if (currentItem != null && currentItem.name == "StaticBlock") { Debug.Log("c"); }
 			}
 		}
 
