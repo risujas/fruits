@@ -132,7 +132,7 @@ public class GameBoard : MonoBehaviour
 			{
 				var item = horizontal ? slots[j, i].InsertedItem : slots[i, j].InsertedItem;
 
-				if (item == null)
+				if (item == null || !item.CanBeInSet)
 				{
 					sequentialIdenticalItems = 1;
 					previousType = string.Empty;
@@ -247,7 +247,7 @@ public class GameBoard : MonoBehaviour
 
 		foreach (var slot in slots)
 		{
-			if (slot.InsertedItem != null && slot.InsertedItem.IsPartOfSet)
+			if (slot.InsertedItem != null && slot.InsertedItem.IsPartOfSet && slot.InsertedItem.CanBeInSet)
 			{
 				slot.InsertedItem.FadingDestroy(itemFadeOutTime);
 				slot.InsertedItem.GetComponentInChildren<DestructionEffect>()?.Trigger();
@@ -288,11 +288,17 @@ public class GameBoard : MonoBehaviour
 				var fallSlot = slots[x + fallSlotOffset.x, y + fallSlotOffset.y];
 				var currentItem = currentSlot.InsertedItem;
 
+				if (currentItem != null && currentItem.name == "StaticBlock") { Debug.Log("a"); }
+
 				if (fallSlot.InsertedItem == null && currentItem != null && currentItem.CanFall)
 				{
 					fallSlot.InsertItem(currentItem, false, true);
 					hasFallingItems = true;
+
+					if (currentItem != null && currentItem.name == "StaticBlock") { Debug.Log("b"); }
 				}
+
+				if (currentItem != null && currentItem.name == "StaticBlock") { Debug.Log("c"); }
 			}
 		}
 

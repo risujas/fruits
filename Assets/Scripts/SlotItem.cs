@@ -6,6 +6,7 @@ public class SlotItem : MonoBehaviour
 	[SerializeField] private Color backgroundColor = Color.white;
 	[SerializeField] private string typeID;
 	[SerializeField] private bool canFall;
+	[SerializeField] private bool canBeInSet;
 
 	private Animator animator;
 
@@ -13,6 +14,7 @@ public class SlotItem : MonoBehaviour
 	public Color BackgroundColor => backgroundColor;
 	public string TypeID => typeID;
 	public bool CanFall => canFall;
+	public bool CanBeInSet => canBeInSet;
 
 	public void PlaySelectionAnimation(bool play)
 	{
