@@ -271,23 +271,26 @@ public class GameBoard : MonoBehaviour
 		}
 	}
 
-	private bool MakeItemsFall()
+	private bool MakeItemsFall(Vector2Int fallSlotOffset)
 	{
-		// TODO, after implementing blocker tiles, make sure items can fall diagonally
-
 		bool hasFallingItems = false;
 
 		for (int y = size.y - 1; y > 0; y--)
 		{
 			for (int x = 0; x < size.x; x++)
 			{
+				if (x + fallSlotOffset.x < 0 || x + fallSlotOffset.x >= size.x || y + fallSlotOffset.y < 0 || y + fallSlotOffset.y >= size.y)
+				{
+					continue;
+				}
+
 				var currentSlot = slots[x, y];
-				var belowSlot = slots[x, y - 1];
+				var fallSlot = slots[x + fallSlotOffset.x, y + fallSlotOffset.y];
 				var currentItem = currentSlot.InsertedItem;
 
-				if (belowSlot.InsertedItem == null && currentItem != null && currentItem.CanFall)
+				if (fallSlot.InsertedItem == null && currentItem != null && currentItem.CanFall)
 				{
-					belowSlot.InsertItem(currentItem, false, true);
+					fallSlot.InsertItem(currentItem, false, true);
 					hasFallingItems = true;
 				}
 			}
@@ -442,7 +445,7 @@ public class GameBoard : MonoBehaviour
 		{
 			Debug.Log("Board has empty slots waiting to be filled");
 			
-			bool hasFallingItems = MakeItemsFall();
+			bool hasFallingItems = MakeItemsFall(new Vector2Int(0, -1));
 			if (!hasFallingItems)
 			{
 				SpawnAdditionalItems();
