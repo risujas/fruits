@@ -41,7 +41,7 @@ public class Slot : MonoBehaviour
 		return nearest;
 	}
 
-	public void InsertItem(SlotItem item, bool destroyExistingItem, bool useSlowTransition)
+	public void InsertItem(SlotItem item, bool destroyExistingItem, bool useLerpMove)
 	{
 		if (item != null)
 		{
@@ -53,16 +53,16 @@ public class Slot : MonoBehaviour
 			item.transform.parent = transform;
 			item.transform.rotation = Quaternion.identity;
 
-			if (useSlowTransition)
+			if (useLerpMove)
 			{
-				var movable = item.GetComponent<LerpMovable>();
-				if (movable == null)
+				var lerpMovable = item.GetComponent<LerpMovable>();
+				if (lerpMovable == null)
 				{
 					throw new System.Exception("Slow transition requires the Movable component");
 				}
 
 				float distance = Vector3.Distance(transform.position, item.transform.position);
-				movable.MoveToPosition(transform.position, itemFallDurationPerUnit * distance);
+				lerpMovable.MoveToPosition(transform.position, itemFallDurationPerUnit * distance);
 			}
 			else
 			{
