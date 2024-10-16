@@ -445,9 +445,30 @@ public class GameBoard : MonoBehaviour
 		if (hasEmptySlots)
 		{
 			Debug.Log("Board has empty slots waiting to be filled");
-			
-			bool hasFallingItems = MakeItemsFall(new Vector2Int(0, -1));
-			if (!hasFallingItems)
+
+			// TODO broken garbage
+
+			if (!MakeItemsFall(new Vector2Int(0, -1)))
+			{
+				SpawnAdditionalItems();
+			}
+
+			else if (!MakeItemsFall(new Vector2Int(-1, -1)))
+			{
+				SpawnAdditionalItems();
+			}
+
+			else if (!MakeItemsFall(new Vector2Int(1, -1)))
+			{
+				SpawnAdditionalItems();
+			}
+
+			else if (!MakeItemsFall(new Vector2Int(-1, 0)))
+			{
+				SpawnAdditionalItems();
+			}
+
+			else if (!MakeItemsFall(new Vector2Int(1, 0)))
 			{
 				SpawnAdditionalItems();
 			}
