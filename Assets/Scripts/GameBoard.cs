@@ -271,33 +271,88 @@ public class GameBoard : MonoBehaviour
 		}
 	}
 
-	private bool MakeItemsFall(Vector2Int fallSlotOffset)
-	{
-		bool hasFallingItems = false;
+	// fuck all this, need to do the falling in phases
+	// first: drop all items straight odown
+	// second: drop all items diagonally
+	// third: drop all items sideways
+	// NEED to cancel phases 2 or 3 if 1 becomes available
 
-		for (int y = size.y - 1; y > 0; y--)
+	private void HandleItemFalling()
+	{
+		for (int y = 0; y < size.y - 1; y++)
 		{
 			for (int x = 0; x < size.x; x++)
 			{
-				if (x + fallSlotOffset.x < 0 || x + fallSlotOffset.x >= size.x || y + fallSlotOffset.y < 0 || y + fallSlotOffset.y >= size.y)
-				{
-					continue;
-				}
-
 				var currentSlot = slots[x, y];
-				var fallSlot = slots[x + fallSlotOffset.x, y + fallSlotOffset.y];
-				var currentItem = currentSlot.InsertedItem;
-
-				if (fallSlot.InsertedItem == null && currentItem != null && currentItem.CanFall)
+				if (currentSlot.InsertedItem == null)
 				{
-					fallSlot.InsertItem(currentItem, false, true);
-					hasFallingItems = true;
-
+					FillEmptySlot(currentSlot);
 				}
 			}
 		}
+	}
 
-		return hasFallingItems;
+	private void FillEmptySlot(Slot slot)
+	{
+		var emptyPos = slot.GridPosition;
+		SlotItem item = null;
+		
+		item = FindFillItem(emptyPos, new Vector2Int(0, 1));
+		if (item != null)
+		{
+			slot.InsertItem(item, false, true);
+			return;
+		}
+
+		item = FindFillItem(emptyPos, new Vector2Int(-1, 1));
+		if (item != null)
+		{
+			slot.InsertItem(item, false, true);
+			return;
+		}
+
+		item = FindFillItem(emptyPos, new Vector2Int(1, 1));
+		if (item != null)
+		{
+			slot.InsertItem(item, false, true);
+			return;
+		}
+
+		item = FindFillItem(emptyPos, new Vector2Int(-1, 0));
+		if (item != null)
+		{
+			slot.InsertItem(item, false, true);
+			return;
+		}
+
+		item = FindFillItem(emptyPos, new Vector2Int(1, 0));
+		if (item != null)
+		{
+			slot.InsertItem(item, false, true);
+			return;
+		}
+	}
+
+	private SlotItem FindFillItem(Vector2Int emptyPos, Vector2Int offset)
+	{
+		if (emptyPos.x + offset.x < 0 || emptyPos.x + offset.x >= size.x || emptyPos.y + offset.y < 0 || emptyPos.y + offset.y >= size.y)
+		{
+			return null;
+		}
+
+		var item = slots[emptyPos.x + offset.x, emptyPos.y + offset.y].InsertedItem;
+
+		if (item == null)
+		{
+			return null;
+		}
+
+		if (!item.CanFall)
+		{
+			return null;
+		}
+
+		return item;
 	}
 
 	private void SpawnAdditionalItems()
@@ -429,11 +484,13 @@ public class GameBoard : MonoBehaviour
 
 	private void Update()
 	{
+		// If any items are being lerped to a new position, wait until they finish
 		if (BoardHasLerpMovingItems())
 		{
 			return;
 		}
 
+		// If there are completed sets on the board, destroy the items
 		bool hasCompletedSets = CheckForSets(false, true);
 		if (hasCompletedSets)
 		{
@@ -441,17 +498,17 @@ public class GameBoard : MonoBehaviour
 			DestroyItems();
 		}
 
+		// If there are empty slots on the board, make items fall into them
 		bool hasEmptySlots = BoardHasEmptySlots();
 		if (hasEmptySlots)
 		{
 			Debug.Log("Board has empty slots waiting to be filled");
 
-			if (!MakeItemsFall(new Vector2Int(0, -1)))
-			{
-				SpawnAdditionalItems();
-			}
+			HandleItemFalling();
+			SpawnAdditionalItems();
 		}
 
+		// If there aren't any completed sets or empty slots, the user may take an action
 		userTookAction = false;
 		if (!hasCompletedSets && !hasEmptySlots)
 		{
