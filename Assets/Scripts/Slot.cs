@@ -4,21 +4,17 @@ public class Slot : MonoBehaviour
 {
 	[SerializeField] private SpriteRenderer border;
 	[SerializeField] private SpriteRenderer background;
-
 	[SerializeField] private Color borderDefaultColor = Color.white;
 	[SerializeField] private Color backgroundDefaultColor = Color.white;
-
 	[SerializeField, ReadOnly] private Vector2Int gridPosition;
-	private bool positionWasSet = false;
 
+	private bool positionWasSet = false;
 	private Color targetBackgroundColor;
 
 	private const float colorLerpSpeed = 5.0f;
-
 	private const float itemFallDurationPerUnit = 0.075f;
 
 	public Vector2Int GridPosition => gridPosition;
-
 	public SlotItem InsertedItem => GetComponentInChildren<SlotItem>();
 
 	public static Slot FindNearestSlot(Vector3 point)
@@ -58,7 +54,7 @@ public class Slot : MonoBehaviour
 				var lerpMovable = item.GetComponent<LerpMovable>();
 				if (lerpMovable == null)
 				{
-					throw new System.Exception("Slow transition requires the Movable component");
+					throw new System.Exception("Lerp transition requires the LerpMovable component");
 				}
 
 				float distance = Vector3.Distance(transform.position, item.transform.position);

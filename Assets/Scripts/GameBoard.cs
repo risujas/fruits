@@ -285,7 +285,7 @@ public class GameBoard : MonoBehaviour
 				var belowSlot = slots[x, y - 1];
 				var currentItem = currentSlot.InsertedItem;
 
-				if (belowSlot.InsertedItem == null && currentItem != null)
+				if (belowSlot.InsertedItem == null && currentItem != null && currentItem.CanFall)
 				{
 					belowSlot.InsertItem(currentItem, false, true);
 					hasFallingItems = true;

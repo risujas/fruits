@@ -5,14 +5,14 @@ public class SlotItem : MonoBehaviour
 {
 	[SerializeField] private Color backgroundColor = Color.white;
 	[SerializeField] private string typeID;
+	[SerializeField] private bool canFall;
 
 	private Animator animator;
 
 	public bool IsPartOfSet { get; set; } = false;
-
 	public Color BackgroundColor => backgroundColor;
-
 	public string TypeID => typeID;
+	public bool CanFall => canFall;
 
 	public void PlaySelectionAnimation(bool play)
 	{
