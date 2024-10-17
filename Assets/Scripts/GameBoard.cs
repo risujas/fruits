@@ -443,10 +443,13 @@ public class GameBoard : MonoBehaviour
 			return;
 		}
 
-		FindSets(false, true);
-		if (hasCompletedSets)
+		if (!hasFallingItems)
 		{
-			DestroyItems();
+			FindSets(false, true);
+			if (hasCompletedSets)
+			{
+				DestroyItems();
+			}
 		}
 
 		CheckForEmptySlots();
