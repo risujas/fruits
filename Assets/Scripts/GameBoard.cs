@@ -260,7 +260,6 @@ public class GameBoard : MonoBehaviour
 		}
 		if (numDestroyed >= 3)
 		{
-
 			if (!userTookAction)
 			{
 				gameAudio.PlayExtraSetSound();

@@ -12,7 +12,7 @@ public class Slot : MonoBehaviour
 	private Color targetBackgroundColor;
 
 	private const float colorLerpSpeed = 5.0f;
-	private const float itemFallDurationPerUnit = 0.075f;
+	private const float itemFallDurationPerUnit = 0.15f;
 
 	public Vector2Int GridPosition => gridPosition;
 	public SlotItem InsertedItem => GetComponentInChildren<SlotItem>();
