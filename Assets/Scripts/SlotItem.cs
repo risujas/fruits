@@ -7,6 +7,7 @@ public class SlotItem : MonoBehaviour
 	[SerializeField] private string typeID;
 	[SerializeField] private bool canFall;
 	[SerializeField] private bool canBeInSet;
+	[SerializeField] private bool canBeSelected;
 
 	private Animator animator;
 
@@ -15,6 +16,7 @@ public class SlotItem : MonoBehaviour
 	public string TypeID => typeID;
 	public bool CanFall => canFall;
 	public bool CanBeInSet => canBeInSet;
+	public bool CanBeSelected => canBeSelected;
 
 	public void PlaySelectionAnimation(bool play)
 	{

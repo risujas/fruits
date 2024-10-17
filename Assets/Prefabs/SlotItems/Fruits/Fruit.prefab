@@ -53,6 +53,7 @@ MonoBehaviour:
   typeID: 
   canFall: 1
   canBeInSet: 1
+  canBeSelected: 1
 --- !u!114 &-7843037056545808842
 MonoBehaviour:
   m_ObjectHideFlags: 0

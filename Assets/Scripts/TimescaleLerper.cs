@@ -11,9 +11,7 @@ public class TimescaleLerper : MonoBehaviour
 		{
 			StopCoroutine(slowmoCoroutine);
 		}
-
 		slowmoCoroutine = StartCoroutine(LerpSlowmo(0.0f, 1.0f, 1.0f));
-		Debug.Log("Slowmo triggered!");
 	}
 
 	private IEnumerator LerpSlowmo(float startValue, float targetValue, float duration)

@@ -39,7 +39,7 @@ public class Slot : MonoBehaviour
 
 	public bool ContainsSelectableItem()
 	{
-		return (InsertedItem != null) && InsertedItem.CanBeInSet;
+		return (InsertedItem != null) && InsertedItem.CanBeSelected;
 	}
 
 	public void InsertItem(SlotItem item, bool destroyExistingItem, bool useLerpMove)
