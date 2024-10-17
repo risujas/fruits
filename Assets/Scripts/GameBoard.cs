@@ -187,6 +187,59 @@ public class GameBoard : MonoBehaviour
 		return foundSets;
 	}
 
+	private void HandleFirstSelection()
+	{
+		firstSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+		if (firstSelectedSlot.ContainsSelectableItem())
+		{
+			firstSelectedSlot.ApplyBorderHighlight();
+			firstSelectedSlot.InsertedItem.PlaySelectionAnimation(true);
+			PlaySelectionSound();
+		}
+		else
+		{
+			firstSelectedSlot = null;
+		}
+	}
+
+	private void HandleSecondSelection()
+	{
+		secondSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+		if (secondSelectedSlot.ContainsSelectableItem() && IsValidMove())
+		{
+			SwapItems(firstSelectedSlot, secondSelectedSlot);
+
+			bool foundSets = CheckForSets(true, false);
+			if (!foundSets)
+			{
+				SwapItems(firstSelectedSlot, secondSelectedSlot);
+			}
+		}
+		firstSelectedSlot.RemoveBorderHighlight();
+		firstSelectedSlot.InsertedItem.PlaySelectionAnimation(false);
+		PlayDeselectionSound();
+
+		firstSelectedSlot = null;
+		secondSelectedSlot = null;
+	}
+
+	private bool IsHoveringOverBoard()
+	{
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+		if (!hit || hit.collider.gameObject != gameObject)
+		{
+			return false;
+		}
+		return true;
+	}
+
+	private void HandleHoverAnimation()
+	{
+		var nearestSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+		nearestSlot.InsertedItem.PlayHoverAnimation(true);
+	}
+
 	private void HandleInput()
 	{
 		foreach (var s in slots)
@@ -194,9 +247,11 @@ public class GameBoard : MonoBehaviour
 			s.InsertedItem.PlayHoverAnimation(false);
 		}
 
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-		if (!hit || hit.collider.gameObject != gameObject)
+		if (IsHoveringOverBoard())
+		{
+			HandleHoverAnimation();
+		}
+		else
 		{
 			return;
 		}
@@ -204,40 +259,14 @@ public class GameBoard : MonoBehaviour
 		if (Input.GetMouseButtonUp(0))
 		{
 			userTookAction = true;
-
 			if (firstSelectedSlot == null)
 			{
-				firstSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-				firstSelectedSlot.ApplyBorderHighlight();
-				firstSelectedSlot.InsertedItem.PlaySelectionAnimation(true);
-				PlaySelectionSound();
+				HandleFirstSelection();
 			}
 			else
 			{
-				secondSelectedSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-				firstSelectedSlot.RemoveBorderHighlight();
-				firstSelectedSlot.InsertedItem.PlaySelectionAnimation(false);
-				PlayDeselectionSound();
-
-				if (IsValidMove())
-				{
-					SwapItems(firstSelectedSlot, secondSelectedSlot);
-
-					bool foundSets = CheckForSets(true, false);
-					if (!foundSets)
-					{
-						SwapItems(firstSelectedSlot, secondSelectedSlot);
-					}
-				}
-
-				firstSelectedSlot = null;
-				secondSelectedSlot = null;
+				HandleSecondSelection();
 			}
-		}
-		else
-		{
-			var nearestSlot = Slot.FindNearestSlot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-			nearestSlot.InsertedItem.PlayHoverAnimation(true);
 		}
 	}
 

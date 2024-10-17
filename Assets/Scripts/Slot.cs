@@ -37,6 +37,11 @@ public class Slot : MonoBehaviour
 		return nearest;
 	}
 
+	public bool ContainsSelectableItem()
+	{
+		return (InsertedItem != null) && InsertedItem.CanBeInSet;
+	}
+
 	public void InsertItem(SlotItem item, bool destroyExistingItem, bool useLerpMove)
 	{
 		if (item != null)
