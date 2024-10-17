@@ -14,6 +14,10 @@ public class GameBoard : MonoBehaviour
 	private GameAudio gameAudio;
 	private TimescaleLerper timescaleLerper;
 
+	private bool hasCompletedSets;
+	private bool hasFallingItems;
+	private bool hasEmptySlots;
+
 	private const float itemFadeOutTime = 0.2f;
 
 	public Vector2Int Size
@@ -74,28 +78,26 @@ public class GameBoard : MonoBehaviour
 		secondSlot.InsertItem(item1, false, true);
 	}
 
-	private bool CheckForSets(bool breakAfterFirst, bool markItems)
+	private void FindSets(bool breakAfterFirst, bool markItems)
 	{
-		bool foundSets = false;
+		hasCompletedSets = false;
 
-		bool horizontalSetsFound = CheckForSetRow(true, breakAfterFirst, markItems);
+		bool horizontalSetsFound = FindSetsInRow(true, breakAfterFirst, markItems);
 		if (horizontalSetsFound)
 		{
-			foundSets = true;
+			hasCompletedSets = true;
 		}
 
-		bool verticalSetsFound = CheckForSetRow(false, breakAfterFirst, markItems);
+		bool verticalSetsFound = FindSetsInRow(false, breakAfterFirst, markItems);
 		if (verticalSetsFound)
 		{
-			foundSets = true;
+			hasCompletedSets = true;
 		}
-
-		return foundSets;
 	}
 
-	private bool CheckForSetRow(bool horizontal, bool breakAfterFirst, bool markItems)
+	private bool FindSetsInRow(bool horizontal, bool breakAfterFirst, bool markItems)
 	{
-		bool foundSets = false;
+		bool foundSetsInRow = false;
 
 		for (int i = 0; i < (horizontal ? size.y : size.x); i++)
 		{
@@ -135,7 +137,7 @@ public class GameBoard : MonoBehaviour
 									slots[i, j - 1].InsertedItem.IsPartOfSet = true;
 									slots[i, j].InsertedItem.IsPartOfSet = true;
 								}
-								foundSets = true;
+								foundSetsInRow = true;
 							}
 							else
 							{
@@ -144,7 +146,7 @@ public class GameBoard : MonoBehaviour
 						}
 						if (breakAfterFirst)
 						{
-							foundSets = true;
+							foundSetsInRow = true;
 							break;
 						}
 					}
@@ -158,7 +160,7 @@ public class GameBoard : MonoBehaviour
 			}
 		}
 
-		return foundSets;
+		return foundSetsInRow;
 	}
 
 	private void HandleFirstSelection()
@@ -183,8 +185,8 @@ public class GameBoard : MonoBehaviour
 		{
 			SwapItems(firstSelectedSlot, secondSelectedSlot);
 
-			bool foundSets = CheckForSets(true, false);
-			if (!foundSets)
+			FindSets(true, false);
+			if (!hasCompletedSets)
 			{
 				SwapItems(firstSelectedSlot, secondSelectedSlot);
 			}
@@ -278,9 +280,9 @@ public class GameBoard : MonoBehaviour
 	// third: drop all items sideways
 	// NEED to cancel phases 2 or 3 if 1 becomes available
 
-	private bool HandleItemFalling()
+	private void HandleItemFalling()
 	{
-		bool hasFallingItems = false;
+		hasFallingItems = false;
 		for (int y = 0; y < size.y - 1; y++)
 		{
 			for (int x = 0; x < size.x; x++)
@@ -295,7 +297,6 @@ public class GameBoard : MonoBehaviour
 				}
 			}
 		}
-		return hasFallingItems;
 	}
 
 	private bool FillEmptySlot(Slot slot)
@@ -383,16 +384,17 @@ public class GameBoard : MonoBehaviour
 		}
 	}
 
-	private bool BoardHasEmptySlots()
+	private void CheckForEmptySlots()
 	{
+		hasEmptySlots = false;
 		foreach (var s in slots)
 		{
 			if (s.InsertedItem == null)
 			{
-				return true;
+				hasEmptySlots = true;
+				break;
 			}
 		}
-		return false;
 	}
 
 	private bool BoardHasLerpMovingItems()
@@ -441,19 +443,17 @@ public class GameBoard : MonoBehaviour
 			return;
 		}
 
-		bool hasCompletedSets = CheckForSets(false, true);
+		FindSets(false, true);
 		if (hasCompletedSets)
 		{
-			Debug.Log("Board has completed sets waiting to be destroyed");
 			DestroyItems();
 		}
 
-		bool hasEmptySlots = BoardHasEmptySlots();
+		CheckForEmptySlots();
 		if (hasEmptySlots)
 		{
-			Debug.Log("Board has empty slots waiting to be filled");
-
-			if (!HandleItemFalling())
+			HandleItemFalling();
+			if (!hasFallingItems)
 			{
 				SpawnAdditionalItems();
 			}
