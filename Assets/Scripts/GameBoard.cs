@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameBoard : MonoBehaviour
@@ -10,15 +9,8 @@ public class GameBoard : MonoBehaviour
 	private Slot secondSelectedSlot;
 	private Slot[,] slots = null;
 	[SerializeField, HideInInspector] private Vector2Int size;
-
-	private AudioSource audioSource;
-	[SerializeField] private AudioClip selectionSound;
-	[SerializeField] private AudioClip deselectionSound;
-	[SerializeField] private AudioClip setCompletionSoundRegular;
-	[SerializeField] private AudioClip setCompletionSoundSuper;
-	[SerializeField] private List<AudioClip> spawnSounds;
-
 	private bool userTookAction = false;
+	private GameAudio gameAudio;
 
 	private const float itemFadeOutTime = 0.2f;
 
@@ -194,7 +186,7 @@ public class GameBoard : MonoBehaviour
 		{
 			firstSelectedSlot.ApplyBorderHighlight();
 			firstSelectedSlot.InsertedItem.PlaySelectionAnimation(true);
-			PlaySelectionSound();
+			gameAudio.PlaySelectionSound();
 		}
 		else
 		{
@@ -217,7 +209,7 @@ public class GameBoard : MonoBehaviour
 		}
 		firstSelectedSlot.RemoveBorderHighlight();
 		firstSelectedSlot.InsertedItem.PlaySelectionAnimation(false);
-		PlayDeselectionSound();
+		gameAudio.PlayDeselectionSound();
 
 		firstSelectedSlot = null;
 		secondSelectedSlot = null;
@@ -290,12 +282,12 @@ public class GameBoard : MonoBehaviour
 
 			if (!userTookAction)
 			{
-				PlayExtraSetSound();
+				gameAudio.PlayExtraSetSound();
 				TriggerSlowmo();
 			}
 			else
 			{
-				PlayRegularSetSound();
+				gameAudio.PlayRegularSetSound();
 			}
 		}
 	}
@@ -405,7 +397,7 @@ public class GameBoard : MonoBehaviour
 
 		if (spawnedItems)
 		{
-			PlaySpawnSound();
+			gameAudio.PlaySpawnSound();
 		}
 	}
 
@@ -442,61 +434,11 @@ public class GameBoard : MonoBehaviour
 		return false;
 	}
 
-	private void PlaySelectionSound()
-	{
-		if (audioSource == null || selectionSound == null)
-		{
-			return;
-		}
-
-		audioSource.PlayOneShot(selectionSound, 0.25f);
-	}
-
-	private void PlayDeselectionSound()
-	{
-		if (audioSource == null || selectionSound == null)
-		{
-			return;
-		}
-
-		audioSource.PlayOneShot(deselectionSound, 0.25f);
-	}
-
-	private void PlayRegularSetSound()
-	{
-		if (audioSource == null || selectionSound == null)
-		{
-			return;
-		}
-
-		audioSource.PlayOneShot(setCompletionSoundRegular, 0.25f);
-	}
-
-	private void PlayExtraSetSound()
-	{
-		if (audioSource == null || selectionSound == null)
-		{
-			return;
-		}
-
-		audioSource.PlayOneShot(setCompletionSoundSuper, 0.25f);
-	}
-
-	private void PlaySpawnSound()
-	{
-		if (audioSource == null || spawnSounds == null || spawnSounds.Count == 0)
-		{
-			return;
-		}
-
-		var randomSound = spawnSounds[Random.Range(0, spawnSounds.Count)];
-		audioSource.PlayOneShot(randomSound, 0.25f);
-	}
-
 	private void Awake()
 	{
-		audioSource = GetComponent<AudioSource>();
+		gameAudio = GetComponent<GameAudio>();
 	}
+
 
 	private void Start()
 	{

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8677248128563489717}
   - component: {fileID: 8738733805525040511}
+  - component: {fileID: 8866269802118428314}
   - component: {fileID: 22002190050258753}
   - component: {fileID: 5919700124114635858}
   m_Layer: 0
@@ -47,6 +48,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 0, y: 0}
+--- !u!114 &8866269802118428314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3469021152407613447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2595a9afbbb5d3d47bc9cba92277bd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   selectionSound: {fileID: 8300000, guid: 16c3508321976744f978eb8da3001e75, type: 3}
   deselectionSound: {fileID: 8300000, guid: 2afb26a1676c58344a979067b799893c, type: 3}
   setCompletionSoundRegular: {fileID: 8300000, guid: 85e6d9bc772448c4eb33fdc155a6317e, type: 3}
