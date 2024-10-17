@@ -34,7 +34,7 @@ public class GameAudio : MonoBehaviour
 		{
 			return;
 		}
-
+		audioSource.PlayOneShot(setCompletionSoundRegular, 0.25f);
 	}
 
 	public void PlayExtraSetSound()
