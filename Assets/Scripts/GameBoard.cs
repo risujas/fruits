@@ -278,8 +278,9 @@ public class GameBoard : MonoBehaviour
 	// third: drop all items sideways
 	// NEED to cancel phases 2 or 3 if 1 becomes available
 
-	private void HandleItemFalling()
+	private bool HandleItemFalling()
 	{
+		bool hasFallingItems = false;
 		for (int y = 0; y < size.y - 1; y++)
 		{
 			for (int x = 0; x < size.x; x++)
@@ -287,13 +288,17 @@ public class GameBoard : MonoBehaviour
 				var currentSlot = slots[x, y];
 				if (currentSlot.InsertedItem == null)
 				{
-					FillEmptySlot(currentSlot);
+					if (FillEmptySlot(currentSlot))
+					{
+						hasFallingItems = true;
+					}
 				}
 			}
 		}
+		return hasFallingItems;
 	}
 
-	private void FillEmptySlot(Slot slot)
+	private bool FillEmptySlot(Slot slot)
 	{
 		var emptyPos = slot.GridPosition;
 		SlotItem item = null;
@@ -302,7 +307,7 @@ public class GameBoard : MonoBehaviour
 		if (item != null)
 		{
 			slot.InsertItem(item, false, true);
-			return;
+			return true;
 		}
 
 		//item = FindFillItem(emptyPos, new Vector2Int(-1, 1));
@@ -332,6 +337,8 @@ public class GameBoard : MonoBehaviour
 		//	slot.InsertItem(item, false, true);
 		//	return;
 		//}
+
+		return false;
 	}
 
 	private SlotItem FindFillItem(Vector2Int emptyPos, Vector2Int offset)
@@ -446,8 +453,10 @@ public class GameBoard : MonoBehaviour
 		{
 			Debug.Log("Board has empty slots waiting to be filled");
 
-			HandleItemFalling();
-			SpawnAdditionalItems();
+			if (!HandleItemFalling())
+			{
+				SpawnAdditionalItems();
+			}
 		}
 
 		userTookAction = false;
