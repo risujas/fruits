@@ -16,7 +16,6 @@ public class GameAudio : MonoBehaviour
 		{
 			return;
 		}
-
 		audioSource.PlayOneShot(selectionSound, 0.25f);
 	}
 
@@ -26,7 +25,6 @@ public class GameAudio : MonoBehaviour
 		{
 			return;
 		}
-
 		audioSource.PlayOneShot(deselectionSound, 0.25f);
 	}
 
@@ -37,7 +35,6 @@ public class GameAudio : MonoBehaviour
 			return;
 		}
 
-		audioSource.PlayOneShot(setCompletionSoundRegular, 0.25f);
 	}
 
 	public void PlayExtraSetSound()
@@ -46,7 +43,6 @@ public class GameAudio : MonoBehaviour
 		{
 			return;
 		}
-
 		audioSource.PlayOneShot(setCompletionSoundSuper, 0.25f);
 	}
 

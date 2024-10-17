@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class GameBoard : MonoBehaviour
 {
-	private GameBoardCreator gameBoardCreator;
 	private Slot firstSelectedSlot;
 	private Slot secondSelectedSlot;
 	private Slot[,] slots = null;
 	[SerializeField, HideInInspector] private Vector2Int size;
 	private bool userTookAction = false;
+
+	private GameBoardCreator gameBoardCreator;
 	private GameAudio gameAudio;
+	private TimescaleLerper timescaleLerper;
 
 	private const float itemFadeOutTime = 0.2f;
 
@@ -24,26 +26,6 @@ public class GameBoard : MonoBehaviour
 		{
 			size = value;
 		}
-	}
-
-	private void TriggerSlowmo()
-	{
-		StartCoroutine(LerpSlowmo(0.0f, 1.0f, 1.0f));
-		Debug.Log("Slowmo triggered!");
-	}
-
-	private IEnumerator LerpSlowmo(float startValue, float targetValue, float duration)
-	{
-		float t = 0.0f;
-		while (t < duration)
-		{
-			Time.timeScale = Mathf.Lerp(startValue, targetValue, t / duration);
-			t += Time.unscaledDeltaTime;
-
-			yield return null;
-		}
-
-		Time.timeScale = targetValue;
 	}
 
 	private bool IsValidMove()
@@ -276,14 +258,13 @@ public class GameBoard : MonoBehaviour
 				numDestroyed++;
 			}
 		}
-
 		if (numDestroyed >= 3)
 		{
 
 			if (!userTookAction)
 			{
 				gameAudio.PlayExtraSetSound();
-				TriggerSlowmo();
+				timescaleLerper.TriggerSlowmo();
 			}
 			else
 			{
@@ -325,33 +306,33 @@ public class GameBoard : MonoBehaviour
 			return;
 		}
 
-		item = FindFillItem(emptyPos, new Vector2Int(-1, 1));
-		if (item != null)
-		{
-			slot.InsertItem(item, false, true);
-			return;
-		}
+		//item = FindFillItem(emptyPos, new Vector2Int(-1, 1));
+		//if (item != null)
+		//{
+		//	slot.InsertItem(item, false, true);
+		//	return;
+		//}
 
-		item = FindFillItem(emptyPos, new Vector2Int(1, 1));
-		if (item != null)
-		{
-			slot.InsertItem(item, false, true);
-			return;
-		}
+		//item = FindFillItem(emptyPos, new Vector2Int(1, 1));
+		//if (item != null)
+		//{
+		//	slot.InsertItem(item, false, true);
+		//	return;
+		//}
 
-		item = FindFillItem(emptyPos, new Vector2Int(-1, 0));
-		if (item != null)
-		{
-			slot.InsertItem(item, false, true);
-			return;
-		}
+		//item = FindFillItem(emptyPos, new Vector2Int(-1, 0));
+		//if (item != null)
+		//{
+		//	slot.InsertItem(item, false, true);
+		//	return;
+		//}
 
-		item = FindFillItem(emptyPos, new Vector2Int(1, 0));
-		if (item != null)
-		{
-			slot.InsertItem(item, false, true);
-			return;
-		}
+		//item = FindFillItem(emptyPos, new Vector2Int(1, 0));
+		//if (item != null)
+		//{
+		//	slot.InsertItem(item, false, true);
+		//	return;
+		//}
 	}
 
 	private SlotItem FindFillItem(Vector2Int emptyPos, Vector2Int offset)
@@ -363,12 +344,7 @@ public class GameBoard : MonoBehaviour
 
 		var item = slots[emptyPos.x + offset.x, emptyPos.y + offset.y].InsertedItem;
 
-		if (item == null)
-		{
-			return null;
-		}
-
-		if (!item.CanFall)
+		if (item == null || !item.CanFall)
 		{
 			return null;
 		}
@@ -436,14 +412,13 @@ public class GameBoard : MonoBehaviour
 
 	private void Awake()
 	{
-		gameAudio = GetComponent<GameAudio>();
+		gameAudio = FindFirstObjectByType<GameAudio>();
+		timescaleLerper = FindFirstObjectByType<TimescaleLerper>();
+		gameBoardCreator = FindFirstObjectByType<GameBoardCreator>();
 	}
-
 
 	private void Start()
 	{
-		gameBoardCreator = GetComponentInParent<GameBoardCreator>();
-
 		slots = new Slot[size.x, size.y];
 
 		var slotObjects = GetComponentsInChildren<Slot>();
@@ -455,13 +430,11 @@ public class GameBoard : MonoBehaviour
 
 	private void Update()
 	{
-		// If any items are being lerped to a new position, wait until they finish
 		if (BoardHasLerpMovingItems())
 		{
 			return;
 		}
 
-		// If there are completed sets on the board, destroy the items
 		bool hasCompletedSets = CheckForSets(false, true);
 		if (hasCompletedSets)
 		{
@@ -469,7 +442,6 @@ public class GameBoard : MonoBehaviour
 			DestroyItems();
 		}
 
-		// If there are empty slots on the board, make items fall into them
 		bool hasEmptySlots = BoardHasEmptySlots();
 		if (hasEmptySlots)
 		{
@@ -479,7 +451,6 @@ public class GameBoard : MonoBehaviour
 			SpawnAdditionalItems();
 		}
 
-		// If there aren't any completed sets or empty slots, the user may take an action
 		userTookAction = false;
 		if (!hasCompletedSets && !hasEmptySlots)
 		{
