@@ -91,6 +91,7 @@ public class Slot : MonoBehaviour
 	{
 		if (InsertedItem != null)
 		{
+			InsertedItem.GetComponent<LerpMovable>()?.StopMovement();
 			InsertedItem.transform.parent = null;
 		}
 	}

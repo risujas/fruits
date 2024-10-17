@@ -12,12 +12,17 @@ public class LerpMovable : MonoBehaviour
 
 	public void MoveToPosition(Vector3 targetPosition, float duration)
 	{
+		StopMovement();
+		movementCoroutine = StartCoroutine(MovementCoroutine(targetPosition, duration));
+	}
+
+	public void StopMovement()
+	{
 		if (movementCoroutine != null)
 		{
 			StopCoroutine(movementCoroutine);
 			movementCoroutine = null;
 		}
-		movementCoroutine = StartCoroutine(MovementCoroutine(targetPosition, duration));
 	}
 
 	private IEnumerator MovementCoroutine(Vector3 targetPosition, float duration)
